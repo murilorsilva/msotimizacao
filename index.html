@@ -226,7 +226,7 @@
         }
 
         .acrylic-plate-card {
-            background-image: url('Image.png');
+            background-image: url('placa-sem-fundo.png');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center center;
@@ -999,17 +999,15 @@
                         <div class="nfc-ring inset-0"></div>
                     </div>
 
-                    <!-- Cartão 3D Interativo com a Imagem Real da Placa de Acrílico Sem Fundo (Clicável para abrir Modal) -->
+                    <!-- Placa 3D Interativa com a Imagem Real Transparente (Clicável para abrir Modal) -->
                     <div id="nfcPlateInteractive" onclick="abrirModal()" title="Toque para simular a aproximação NFC"
-                        class="acrylic-plate-card w-full max-w-[320px] sm:max-w-[360px] aspect-[835/945] cursor-pointer select-none relative group hover:scale-[1.02] transition-transform duration-300"
-                        data-tilt data-tilt-max="16" data-tilt-speed="400" data-tilt-perspective="1000"
-                        data-tilt-glare="true" data-tilt-max-glare="0.5">
+                        class="w-full max-w-[320px] sm:max-w-[360px] cursor-pointer select-none relative group hover:scale-[1.02] transition-transform duration-300"
+                        data-tilt data-tilt-max="16" data-tilt-speed="400" data-tilt-perspective="1000">
 
-                        <!-- Chanfro de reflexo linear diagonal permanente do acrílico -->
-                        <div class="acrylic-sheen-line pointer-events-none"></div>
-
-                        <!-- Brilho Especular Dinâmico (Acrylic Glare) -->
-                        <div class="acrylic-glare-overlay pointer-events-none" id="plateGlareOverlay"></div>
+                        <!-- Imagem transparente da Placa Real em Acrílico -->
+                        <img src="Image.png" onerror="this.src='placa-sem-fundo.png'"
+                            alt="Placa NFC de Avaliação Google em Acrílico"
+                            class="w-full h-auto drop-shadow-2xl select-none pointer-events-none">
 
                         <!-- Badge Flutuante no Hover: Clique para Simular -->
                         <div
@@ -1941,8 +1939,7 @@
                     max: 18,
                     speed: 400,
                     perspective: 1000,
-                    glare: true,
-                    "max-glare": 0.5,
+                    glare: false,
                     scale: 1.03
                 });
             }
