@@ -1,0 +1,2426 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MS Otimização de Negócios | Engenharia de Posicionamento no Google & Tecnologia NFC</title>
+    <meta name="description"
+        content="Ecossistema de alta precisão para dominar o topo das buscas do Google Maps e automatizar avaliações 5 estrelas via aproximação NFC em Jaraguá do Sul e região.">
+    <meta name="theme-color" content="#020617">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="MS Otimização de Negócios | Domine o Topo do Google Maps">
+    <meta property="og:description"
+        content="Visibilidade com precisão de engenharia. Transforme buscas locais em faturamento real com a MS.">
+    <meta property="og:type" content="website">
+
+    <!-- Google Fonts: Plus Jakarta Sans, Inter & Space Grotesk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', '"Inter"', 'sans-serif'],
+                        display: ['"Plus Jakarta Sans"', '"Inter"', 'sans-serif'],
+                        mono: ['"Space Grotesk"', 'monospace'],
+                    },
+                    colors: {
+                        slate: {
+                            950: '#020617',
+                            900: '#070C18',
+                            850: '#0B1222',
+                            800: '#111C33',
+                        },
+                        google: {
+                            blue: '#4285F4',
+                            red: '#EA4335',
+                            yellow: '#FBBC05',
+                            green: '#34A853',
+                        },
+                        accent: {
+                            cyan: '#38BDF8',
+                            gold: '#F59E0B'
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float-slow': 'float 6s ease-in-out infinite',
+                        'radar-pulse': 'radar 2.5s cubic-bezier(0, 0, 0.2, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        radar: {
+                            '0%': { transform: 'scale(0.8)', opacity: '0.9' },
+                            '100%': { transform: 'scale(2.2)', opacity: '0' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons via CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Three.js via CDN (WebGL 3D Interactive Mesh) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- GSAP & ScrollTrigger via CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Vanilla-Tilt via CDN (Efeito 3D Tilt e Glare de Acrílico) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+
+    <style>
+        /* Estética Glassmorphism High-Ticket Dark */
+        .glass-panel {
+            background: rgba(11, 18, 34, 0.68);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.6), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-card {
+            background: rgba(15, 23, 42, 0.55);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .glass-card:hover {
+            background: rgba(22, 34, 60, 0.72);
+            border-color: rgba(66, 133, 244, 0.35);
+            transform: translateY(-4px);
+            box-shadow: 0 25px 40px -15px rgba(2, 6, 23, 0.9), 0 0 25px -5px rgba(66, 133, 244, 0.15);
+        }
+
+        .glass-nav {
+            background: rgba(2, 6, 23, 0.75);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        /* Bordas com Gradiente Contido das 4 Cores do Google */
+        .google-gradient-border {
+            position: relative;
+            border-radius: inherit;
+        }
+
+        .google-gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: -1.5px;
+            border-radius: inherit;
+            background: linear-gradient(135deg, rgba(66, 133, 244, 0.85) 0%, rgba(234, 67, 53, 0.85) 32%, rgba(251, 188, 5, 0.85) 66%, rgba(52, 168, 83, 0.85) 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            padding: 1.5px;
+            pointer-events: none;
+            opacity: 0.4;
+            transition: opacity 0.35s ease, filter 0.35s ease;
+        }
+
+        .google-gradient-border:hover::before {
+            opacity: 1;
+            filter: drop-shadow(0 0 8px rgba(66, 133, 244, 0.4));
+        }
+
+        /* Linha sutil de ecossistema */
+        .google-accent-line {
+            background: linear-gradient(90deg, #4285F4 0%, #EA4335 33%, #FBBC05 66%, #34A853 100%);
+        }
+
+        /* =========================================================================
+       SISTEMA 3D FLIP CARD (DIAGNÓSTICO DE MERCADO LOCAL)
+       Preservação de perspectiva 3D, rotação fluida no hover e borda Google Glow
+       ========================================================================= */
+        .perspective-1000 {
+            perspective: 1000px;
+            -webkit-perspective: 1000px;
+        }
+
+        .flip-card-inner {
+            transform-style: preserve-3d;
+            -webkit-transform-style: preserve-3d;
+            transition: transform 0.7s cubic-bezier(0.34, 1.3, 0.64, 1);
+        }
+
+        .flip-card:hover .flip-card-inner,
+        .flip-card:focus-within .flip-card-inner,
+        .flip-card.is-flipped .flip-card-inner {
+            transform: rotateY(180deg);
+            -webkit-transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transform-style: preserve-3d;
+            -webkit-transform-style: preserve-3d;
+        }
+
+        .flip-card-back {
+            transform: rotateY(180deg);
+            -webkit-transform: rotateY(180deg);
+        }
+
+        /* Borda Gradiente Google (Azul, Vermelho, Amarelo, Verde) no Verso do Cartão */
+        .google-flip-border {
+            position: relative;
+        }
+
+        .google-flip-border::before {
+            content: '';
+            position: absolute;
+            inset: -1.5px;
+            border-radius: inherit;
+            background: linear-gradient(135deg, #4285F4 0%, #EA4335 33%, #FBBC05 66%, #34A853 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            padding: 1.5px;
+            pointer-events: none;
+            opacity: 0.95;
+            filter: drop-shadow(0 0 12px rgba(66, 133, 244, 0.55)) drop-shadow(0 0 8px rgba(52, 168, 83, 0.4));
+            z-index: 10;
+        }
+
+        /* Pulso da tecnologia NFC e Efeito Holográfico */
+        .nfc-ring {
+            position: absolute;
+            border-radius: 9999px;
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            animation: radar 3s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+
+        .nfc-ring:nth-child(2) {
+            animation-delay: 1s;
+        }
+
+        .nfc-ring:nth-child(3) {
+            animation-delay: 2s;
+        }
+
+        /* Efeito de perspectiva para Placa Acrílica 3D Real */
+        .acrylic-plate-container {
+            perspective: 1200px;
+        }
+
+        .acrylic-plate-card {
+            background-image: url('placa-sem-fundo.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center center;
+            border-radius: 36px;
+            filter: drop-shadow(0 35px 60px rgba(0, 0, 0, 0.95)) drop-shadow(0 15px 30px rgba(66, 133, 244, 0.35));
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.15s ease-out, filter 0.3s ease;
+            will-change: transform;
+        }
+
+        .acrylic-plate-card:hover {
+            filter: drop-shadow(0 40px 75px rgba(0, 0, 0, 0.98)) drop-shadow(0 20px 40px rgba(66, 133, 244, 0.5));
+        }
+
+        /* Brilho Especular Dinâmico (Acrylic Glare) */
+        .acrylic-glare-overlay {
+            position: absolute;
+            inset: 4px;
+            border-radius: 32px;
+            pointer-events: none;
+            background: radial-gradient(circle at var(--glare-x, 50%) var(--glare-y, 50%),
+                    rgba(255, 255, 255, 0.65) 0%,
+                    rgba(255, 255, 255, 0.15) 35%,
+                    rgba(255, 255, 255, 0) 65%);
+            mix-blend-mode: overlay;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+            z-index: 5;
+        }
+
+        .acrylic-plate-card:hover .acrylic-glare-overlay {
+            opacity: 1;
+        }
+
+        /* Chanfro de reflexo linear diagonal permanente do acrílico */
+        .acrylic-sheen-line {
+            position: absolute;
+            inset: 4px;
+            border-radius: 32px;
+            pointer-events: none;
+            background: linear-gradient(135deg,
+                    rgba(255, 255, 255, 0.3) 0%,
+                    rgba(255, 255, 255, 0.05) 35%,
+                    transparent 55%);
+            mix-blend-mode: overlay;
+            z-index: 4;
+        }
+
+        /* Pulso suave para CTA High-Ticket */
+        @keyframes cta-pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(66, 133, 244, 0.4), 0 10px 30px -5px rgba(66, 133, 244, 0.5);
+            }
+
+            50% {
+                box-shadow: 0 0 0 12px rgba(66, 133, 244, 0), 0 15px 40px -5px rgba(66, 133, 244, 0.7);
+            }
+        }
+
+        .btn-cta-pulse {
+            animation: cta-pulse 3.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        /* Custom range input */
+        input[type=range] {
+            -webkit-appearance: none;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+            height: 6px;
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 22px;
+            width: 22px;
+            border-radius: 50%;
+            background: #4285F4;
+            cursor: pointer;
+            box-shadow: 0 0 12px rgba(66, 133, 244, 0.8), 0 0 0 3px #020617;
+            transition: transform 0.15s ease;
+        }
+
+        input[type=range]::-webkit-slider-thumb:hover {
+            transform: scale(1.18);
+        }
+
+        /* Scrollbar minimalista */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #020617;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #334155;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-blue-500/30 selection:text-white min-h-screen relative overflow-x-hidden">
+
+    <!-- =========================================================================
+       FUNDO 3D INTERATIVO (THREE.JS PLEXUS CANVAS)
+       Fundo imersivo com malha de partículas conectadas e resposta sutil ao mouse
+       ========================================================================= -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <canvas id="three-network-canvas" class="w-full h-full opacity-65"></canvas>
+        <!-- Gradiente de profundidade superior e inferior para transição perfeita -->
+        <div class="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-transparent to-slate-950/95"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(66,133,244,0.08),transparent_70%)]">
+        </div>
+    </div>
+
+    <!-- Barra Superior Minimalista com as 4 Cores do Google -->
+    <div class="fixed top-0 left-0 right-0 h-[2px] z-[60] google-accent-line"></div>
+
+    <!-- =========================================================================
+       NAVBAR GLASSMORPHISM FLUTUANTE
+       Logo MS com emblema oficial e botão 'Falar com Especialista' com glow sutil
+       ========================================================================= -->
+    <header class="fixed top-3 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto transition-all duration-300"
+        id="mainHeader">
+        <div
+            class="glass-nav rounded-2xl px-5 sm:px-7 py-3.5 flex items-center justify-between shadow-2xl shadow-black/40">
+
+            <!-- LOGO MS OFICIAL COM EMBLEMA GOOGLE -->
+            <a href="#hero" class="flex items-center gap-3.5 group select-none">
+                <div
+                    class="relative w-10 h-10 flex items-center justify-center rounded-xl bg-slate-900/90 border border-white/10 group-hover:border-blue-500/40 transition-all duration-300 shadow-lg shadow-black/50 overflow-hidden">
+                    <!-- Emblema Geométrico MS com cores Google -->
+                    <svg class="w-7 h-7 transform group-hover:scale-105 transition-transform duration-300"
+                        viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Asa Esquerda / Superior (Azul) -->
+                        <path d="M12 28L42 56L68 32L54 20L38 34L26 22L12 28Z" fill="#4285F4" />
+                        <path d="M12 28L28 72L42 56L26 22L12 28Z" fill="#1A73E8" />
+                        <!-- Faceta Inferior Esquerda (Vermelho) -->
+                        <path d="M28 72L44 86L58 74L42 56L28 72Z" fill="#EA4335" />
+                        <!-- Asa Direita Inferior (Verde) -->
+                        <path d="M42 56L58 74L86 50L72 36L58 48L42 56Z" fill="#34A853" />
+                        <!-- Pico Superior Direito (Amarelo) -->
+                        <path d="M68 32L86 50L88 28L74 20L68 32Z" fill="#FBBC05" />
+                    </svg>
+                    <div class="absolute -bottom-2 -right-2 w-5 h-5 rounded-full bg-blue-500/20 blur-sm"></div>
+                </div>
+
+                <div class="flex flex-col">
+                    <div class="flex items-center gap-1.5">
+                        <span
+                            class="font-display font-black text-xl tracking-tight text-white group-hover:text-blue-400 transition-colors">MS</span>
+                        <span class="w-1.5 h-1.5 rounded-full bg-google-blue animate-pulse"></span>
+                    </div>
+                    <span
+                        class="text-[9.5px] uppercase tracking-[0.22em] text-slate-400 font-semibold leading-none">Otimização
+                        de Negócios</span>
+                </div>
+            </a>
+
+            <!-- LINKS DE NAVEGAÇÃO DESKTOP -->
+            <nav class="hidden lg:flex items-center gap-8 text-[13.5px] font-medium text-slate-300">
+                <a href="#diagnostico" class="hover:text-white transition-colors duration-200">Diagnóstico de Dor</a>
+                <a href="#solucao-gmb" class="hover:text-white transition-colors duration-200">Estrutura de Perfil</a>
+                <a href="#solucao-nfc" class="hover:text-white transition-colors duration-200">Placa NFC 5★</a>
+                <a href="#metodologia" class="hover:text-white transition-colors duration-200">Metodologia</a>
+                <a href="#roi" class="hover:text-white transition-colors duration-200">Calculadora ROI</a>
+            </nav>
+
+            <!-- BOTÃO CTA NAVBAR (Falar com Especialista com Glow Sutil) -->
+            <div class="flex items-center gap-3">
+                <a href="https://wa.me/5547999999999?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20um%20especialista%20da%20MS%20Otimiza%C3%A7%C3%A3o%20sobre%20posicionamento%20no%20Google."
+                    target="_blank" rel="noopener noreferrer"
+                    class="google-gradient-border relative inline-flex items-center gap-2.5 px-5 py-2 rounded-xl text-xs uppercase tracking-wider font-bold text-white bg-slate-900/90 hover:bg-slate-800 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/20 group">
+                    <span class="w-2 h-2 rounded-full bg-google-green animate-ping"></span>
+                    <span>Falar com Especialista</span>
+                    <i data-lucide="arrow-up-right"
+                        class="w-3.5 h-3.5 text-slate-400 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+                </a>
+
+                <!-- Menu Mobile Button -->
+                <button id="mobileMenuBtn" aria-label="Abrir Menu"
+                    class="lg:hidden p-2 rounded-xl bg-slate-900/80 border border-white/10 text-slate-300 hover:text-white focus:outline-none">
+                    <i data-lucide="menu" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobileDrawer"
+            class="hidden lg:hidden mt-2 p-5 glass-panel rounded-2xl flex-col gap-4 text-sm font-medium border border-white/10 shadow-2xl animate-fade-in">
+            <a href="#diagnostico"
+                class="mobile-nav-link text-slate-200 hover:text-blue-400 py-1.5 flex items-center justify-between border-b border-white/5">
+                <span>Diagnóstico de Dor</span> <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500"></i>
+            </a>
+            <a href="#solucao-gmb"
+                class="mobile-nav-link text-slate-200 hover:text-blue-400 py-1.5 flex items-center justify-between border-b border-white/5">
+                <span>Otimização do Perfil</span> <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500"></i>
+            </a>
+            <a href="#solucao-nfc"
+                class="mobile-nav-link text-slate-200 hover:text-blue-400 py-1.5 flex items-center justify-between border-b border-white/5">
+                <span>Placa NFC de Avaliação</span> <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500"></i>
+            </a>
+            <a href="#metodologia"
+                class="mobile-nav-link text-slate-200 hover:text-blue-400 py-1.5 flex items-center justify-between border-b border-white/5">
+                <span>Metodologia MS</span> <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500"></i>
+            </a>
+            <a href="#roi"
+                class="mobile-nav-link text-slate-200 hover:text-blue-400 py-1.5 flex items-center justify-between">
+                <span>Calculadora de Lucro</span> <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500"></i>
+            </a>
+            <a href="https://wa.me/5547999999999?text=Ol%C3%A1!%20Gostaria%20de%20um%20diagn%C3%B3stico%20gratuito."
+                target="_blank"
+                class="w-full text-center py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs uppercase tracking-wider mt-2">
+                Solicitar Auditoria Gratuita
+            </a>
+        </div>
+    </header>
+
+    <!-- =========================================================================
+       HERO SECTION (CRO & VISUAL IMPACT)
+       Mesh 3D Three.js ativo no background com micro-interações do mouse
+       ========================================================================= -->
+    <section id="hero" class="relative pt-36 pb-24 md:pt-48 md:pb-36 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10">
+        <div class="flex flex-col items-center text-center max-w-4xl mx-auto">
+
+            <!-- Tag de Autoridade / Status Operacional com Pulso -->
+            <div
+                class="hero-stagger inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-slate-900/80 border border-white/10 shadow-inner mb-8 backdrop-blur-md">
+                <span class="flex h-2 w-2 relative">
+                    <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-google-green opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-google-green"></span>
+                </span>
+                <span class="text-xs uppercase tracking-[0.2em] font-bold text-slate-300">
+                    Jaraguá do Sul & Região • Engenharia de Busca Local
+                </span>
+            </div>
+
+            <!-- Headline Principal de Alto Impacto -->
+            <h1
+                class="hero-stagger font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-[1.12] mb-7">
+                Visibilidade com precisão de engenharia. Domine as buscas e transforme
+                <span
+                    class="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-sky-300 to-indigo-300">
+                    cliques em clientes reais.
+                </span>
+            </h1>
+
+            <!-- Subheadline Explicativa -->
+            <p class="hero-stagger text-lg sm:text-xl text-slate-300 font-normal leading-relaxed max-w-3xl mb-10">
+                O ecossistema definitivo de posicionamento no Google e tecnologia NFC para os melhores negócios de <span
+                    class="text-white font-semibold">Jaraguá do Sul e região</span>.
+            </p>
+
+            <!-- Ações Principais (CTA com Efeito Pulso Suave e Gradiente Google Contido) -->
+            <div
+                class="hero-stagger flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-14">
+                <!-- CTA Principal: Quero dominar o topo -->
+                <a href="#diagnostico"
+                    class="btn-cta-pulse w-full sm:w-auto relative group inline-flex items-center justify-center gap-3 px-9 py-4.5 rounded-2xl text-sm uppercase tracking-wider font-extrabold text-white bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]">
+                    <span class="relative z-10 flex items-center gap-2">
+                        <span>Quero dominar o topo</span>
+                        <i data-lucide="zap"
+                            class="w-4 h-4 text-google-yellow fill-google-yellow group-hover:scale-110 transition-transform"></i>
+                    </span>
+                    <!-- Anel de borda com as cores do Google no hover -->
+                    <div
+                        class="absolute inset-0 rounded-2xl google-gradient-border opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                    </div>
+                </a>
+
+                <!-- Botão Secundário: Ver Demonstração da Placa NFC -->
+                <a href="#solucao-nfc"
+                    class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4.5 rounded-2xl text-sm font-semibold tracking-wide text-slate-200 glass-panel hover:bg-slate-800/80 hover:text-white transition-all duration-300 hover:border-slate-700">
+                    <i data-lucide="radio" class="w-4 h-4 text-sky-400"></i>
+                    <span>Ver Tecnologia NFC em Ação</span>
+                </a>
+            </div>
+
+            <!-- Métricas de Credibilidade Glassmorphism (Stagger Grid) -->
+            <div
+                class="hero-stagger w-full grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 pt-6 border-t border-white/10">
+
+                <div class="glass-panel p-4 rounded-xl flex flex-col items-center text-center">
+                    <div class="flex items-center gap-1.5 mb-1">
+                        <span class="font-display font-extrabold text-2xl sm:text-3xl text-white">+85%</span>
+                        <span class="w-2 h-2 rounded-full bg-google-blue"></span>
+                    </div>
+                    <span class="text-xs text-slate-400 leading-snug">Aumento médio em rotas e chamadas locais</span>
+                </div>
+
+                <div class="glass-panel p-4 rounded-xl flex flex-col items-center text-center">
+                    <div class="flex items-center gap-1.5 mb-1">
+                        <span class="font-display font-extrabold text-2xl sm:text-3xl text-white">Top 3</span>
+                        <span class="w-2 h-2 rounded-full bg-google-yellow"></span>
+                    </div>
+                    <span class="text-xs text-slate-400 leading-snug">Posicionamento Estratégico</span>
+                </div>
+
+                <div class="glass-panel p-4 rounded-xl flex flex-col items-center text-center">
+                    <div class="flex items-center gap-1.5 mb-1">
+                        <span class="font-display font-extrabold text-2xl sm:text-3xl text-white">&lt; 3 seg</span>
+                        <span class="w-2 h-2 rounded-full bg-google-green"></span>
+                    </div>
+                    <span class="text-xs text-slate-400 leading-snug">Para coletar avaliação 5★</span>
+                </div>
+
+                <div class="glass-panel p-4 rounded-xl flex flex-col items-center text-center">
+                    <div class="flex items-center gap-1.5 mb-1">
+                        <span class="font-display font-extrabold text-2xl sm:text-3xl text-white">24/7</span>
+                        <span class="w-2 h-2 rounded-full bg-google-red"></span>
+                    </div>
+                    <span class="text-xs text-slate-400 leading-snug">Visibilidade contínua no Google Maps</span>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- =========================================================================
+       DIAGNÓSTICO DE MERCADO LOCAL (CARTÕES DE DIAGNÓSTICO REVELADORES)
+       Cards 3D interativos com Vanilla-tilt, bordas Google suaves e fade-up
+       ========================================================================= -->
+    <section id="diagnostico" class="relative py-20 md:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-20">
+        <div class="flex flex-col items-center text-center max-w-3xl mx-auto mb-14">
+
+            <div
+                class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-red-950/40 border border-red-800/40 mb-4 backdrop-blur-md">
+                <i data-lucide="alert-triangle" class="w-3.5 h-3.5 text-google-red"></i>
+                <span class="text-xs uppercase tracking-widest font-bold text-red-300">Diagnóstico de Mercado
+                    Local</span>
+            </div>
+
+            <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight mb-5">
+                O custo silencioso de <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-amber-300">não ser o
+                    primeiro</span> quando o cliente decide comprar.
+            </h2>
+
+            <p class="text-base sm:text-lg text-slate-300 leading-relaxed">
+                Passe o cursor sobre os cartões abaixo para analisar a saúde de visibilidade do seu negócio e revelar os
+                pontos críticos de perda de clientes em Jaraguá do Sul:
+            </p>
+        </div>
+
+        <!-- Grid Responsivo Centralizado (1 coluna no mobile, 3 colunas no desktop) com Z-Index Alto -->
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 relative z-20">
+
+            <!-- CARTÃO 1: Sua empresa existe no mapa? (3D Flip) -->
+            <div class="flip-card group perspective-1000 h-[360px] w-full cursor-pointer select-none">
+                <div
+                    class="flip-card-inner relative w-full h-full duration-700 transition-transform [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+
+                    <!-- FRENTE: A Pergunta (Glassmorphism Escuro Centralizado) -->
+                    <div
+                        class="flip-card-front absolute inset-0 w-full h-full [backface-visibility:hidden] glass-panel rounded-3xl p-7 flex flex-col items-center justify-between text-center shadow-2xl border border-white/10 group-hover:border-blue-500/30 transition-all duration-300">
+                        <span
+                            class="text-[11px] font-mono font-bold tracking-wider uppercase text-blue-400 bg-blue-950/60 border border-blue-800/40 px-3.5 py-1 rounded-full">
+                            Visibilidade Local
+                        </span>
+
+                        <div class="flex flex-col items-center my-auto">
+                            <div
+                                class="w-16 h-16 rounded-2xl bg-slate-900/90 border border-blue-500/30 flex items-center justify-center text-google-blue shadow-lg mb-5 group-hover:scale-110 transition-transform duration-300">
+                                <i data-lucide="map-pin" class="w-8 h-8"></i>
+                            </div>
+                            <h3
+                                class="font-display font-bold text-2xl sm:text-[25px] text-white tracking-tight leading-snug">
+                                Sua empresa existe no mapa?
+                            </h3>
+                        </div>
+
+                        <div
+                            class="flex items-center gap-2 text-xs font-mono text-slate-400 group-hover:text-blue-300 transition-colors">
+                            <i data-lucide="rotate-cw" class="w-3.5 h-3.5 animate-pulse"></i>
+                            <span>Passe o mouse para virar</span>
+                        </div>
+                    </div>
+
+                    <!-- VERSO: A Revelação (Fundo Escuro com Borda Gradiente Google) -->
+                    <div
+                        class="flip-card-back absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] bg-slate-950/95 backdrop-blur-2xl rounded-3xl p-7 flex flex-col items-center justify-between text-center shadow-2xl google-flip-border">
+                        <div
+                            class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/80 border border-white/10 text-[10.5px] font-mono text-slate-300">
+                            <span class="w-2 h-2 rounded-full bg-google-blue"></span>
+                            <span class="font-bold tracking-wider uppercase">Diagnóstico Revelado</span>
+                        </div>
+
+                        <div class="my-auto px-2">
+                            <p class="font-display font-semibold text-base sm:text-lg text-slate-100 leading-relaxed">
+                                “Se o cliente precisa digitar o nome exato da sua loja para te achar, você é invisível
+                                para novos compradores.”
+                            </p>
+                        </div>
+
+                        <div
+                            class="pt-3 border-t border-white/10 w-full flex items-center justify-between text-xs font-mono">
+                            <span class="text-slate-400">Impacto Real:</span>
+                            <span
+                                class="text-red-400 font-bold bg-red-950/70 px-2.5 py-0.5 rounded border border-red-900/40">-64%
+                                de novos clientes</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- CARTÃO 2: Para quem a sua nota trabalha? (3D Flip) -->
+            <div class="flip-card group perspective-1000 h-[360px] w-full cursor-pointer select-none">
+                <div
+                    class="flip-card-inner relative w-full h-full duration-700 transition-transform [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+
+                    <!-- FRENTE: A Pergunta (Glassmorphism Escuro Centralizado) -->
+                    <div
+                        class="flip-card-front absolute inset-0 w-full h-full [backface-visibility:hidden] glass-panel rounded-3xl p-7 flex flex-col items-center justify-between text-center shadow-2xl border border-white/10 group-hover:border-amber-500/30 transition-all duration-300">
+                        <span
+                            class="text-[11px] font-mono font-bold tracking-wider uppercase text-amber-400 bg-amber-950/60 border border-amber-800/40 px-3.5 py-1 rounded-full">
+                            Reputação & 5★
+                        </span>
+
+                        <div class="flex flex-col items-center my-auto">
+                            <div
+                                class="w-16 h-16 rounded-2xl bg-slate-900/90 border border-amber-500/30 flex items-center justify-center text-google-yellow shadow-lg mb-5 group-hover:scale-110 transition-transform duration-300">
+                                <i data-lucide="star" class="w-8 h-8 fill-google-yellow"></i>
+                            </div>
+                            <h3
+                                class="font-display font-bold text-2xl sm:text-[25px] text-white tracking-tight leading-snug">
+                                Para quem a sua nota trabalha?
+                            </h3>
+                        </div>
+
+                        <div
+                            class="flex items-center gap-2 text-xs font-mono text-slate-400 group-hover:text-amber-300 transition-colors">
+                            <i data-lucide="rotate-cw" class="w-3.5 h-3.5 animate-pulse"></i>
+                            <span>Passe o mouse para virar</span>
+                        </div>
+                    </div>
+
+                    <!-- VERSO: A Revelação (Fundo Escuro com Borda Gradiente Google) -->
+                    <div
+                        class="flip-card-back absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] bg-slate-950/95 backdrop-blur-2xl rounded-3xl p-7 flex flex-col items-center justify-between text-center shadow-2xl google-flip-border">
+                        <div
+                            class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/80 border border-white/10 text-[10.5px] font-mono text-slate-300">
+                            <span class="w-2 h-2 rounded-full bg-google-yellow"></span>
+                            <span class="font-bold tracking-wider uppercase">Diagnóstico Revelado</span>
+                        </div>
+
+                        <div class="my-auto px-2">
+                            <p class="font-display font-semibold text-base sm:text-lg text-slate-100 leading-relaxed">
+                                “Lojas com nota inferior a 4.5 enviam até 70% dos clientes diretamente para o
+                                concorrente da rua de baixo.”
+                            </p>
+                        </div>
+
+                        <div
+                            class="pt-3 border-t border-white/10 w-full flex items-center justify-between text-xs font-mono">
+                            <span class="text-slate-400">Fuga de Vendas:</span>
+                            <span
+                                class="text-amber-400 font-bold bg-amber-950/70 px-2.5 py-0.5 rounded border border-amber-900/40">70%
+                                fogem pro vizinho</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- CARTÃO 3: Sua vitrine está blindada? (3D Flip) -->
+            <div class="flip-card group perspective-1000 h-[360px] w-full cursor-pointer select-none">
+                <div
+                    class="flip-card-inner relative w-full h-full duration-700 transition-transform [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+
+                    <!-- FRENTE: A Pergunta (Glassmorphism Escuro Centralizado) -->
+                    <div
+                        class="flip-card-front absolute inset-0 w-full h-full [backface-visibility:hidden] glass-panel rounded-3xl p-7 flex flex-col items-center justify-between text-center shadow-2xl border border-white/10 group-hover:border-green-500/30 transition-all duration-300">
+                        <span
+                            class="text-[11px] font-mono font-bold tracking-wider uppercase text-green-400 bg-green-950/60 border border-green-800/40 px-3.5 py-1 rounded-full">
+                            Vitrine & Contato
+                        </span>
+
+                        <div class="flex flex-col items-center my-auto">
+                            <div
+                                class="w-16 h-16 rounded-2xl bg-slate-900/90 border border-green-500/30 flex items-center justify-center text-google-green shadow-lg mb-5 group-hover:scale-110 transition-transform duration-300">
+                                <div class="flex items-center gap-1">
+                                    <i data-lucide="clock" class="w-5 h-5"></i>
+                                    <i data-lucide="phone-call" class="w-5 h-5"></i>
+                                </div>
+                            </div>
+                            <h3
+                                class="font-display font-bold text-2xl sm:text-[25px] text-white tracking-tight leading-snug">
+                                Sua vitrine está blindada?
+                            </h3>
+                        </div>
+
+                        <div
+                            class="flex items-center gap-2 text-xs font-mono text-slate-400 group-hover:text-green-300 transition-colors">
+                            <i data-lucide="rotate-cw" class="w-3.5 h-3.5 animate-pulse"></i>
+                            <span>Passe o mouse para virar</span>
+                        </div>
+                    </div>
+
+                    <!-- VERSO: A Revelação (Fundo Escuro com Borda Gradiente Google) -->
+                    <div
+                        class="flip-card-back absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] bg-slate-950/95 backdrop-blur-2xl rounded-3xl p-7 flex flex-col items-center justify-between text-center shadow-2xl google-flip-border">
+                        <div
+                            class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/80 border border-white/10 text-[10.5px] font-mono text-slate-300">
+                            <span class="w-2 h-2 rounded-full bg-google-green"></span>
+                            <span class="font-bold tracking-wider uppercase">Diagnóstico Revelado</span>
+                        </div>
+
+                        <div class="my-auto px-2">
+                            <p class="font-display font-semibold text-base sm:text-lg text-slate-100 leading-relaxed">
+                                “Horários errados e telefones desatualizados causam frustração imediata. O cliente não
+                                tenta duas vezes, ele clica no próximo.”
+                            </p>
+                        </div>
+
+                        <div
+                            class="pt-3 border-t border-white/10 w-full flex items-center justify-between text-xs font-mono">
+                            <span class="text-slate-400">Risco Imediato:</span>
+                            <span
+                                class="text-red-400 font-bold bg-red-950/70 px-2.5 py-0.5 rounded border border-red-900/40">Desistência
+                                no 1º clique</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- =========================================================================
+       A SOLUÇÃO: LAYOUT ASSIMÉTRICO & DINÂMICO
+       Bloco A: Otimização Estrutural do Perfil | Bloco B: Placa NFC de Avaliação
+       ========================================================================= -->
+    <section class="relative py-24 md:py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 overflow-hidden">
+
+        <!-- Cabeçalho do Ecossistema -->
+        <div class="flex flex-col items-center text-center max-w-3xl mx-auto mb-20">
+            <div
+                class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-950/50 border border-blue-800/40 mb-4">
+                <i data-lucide="cpu" class="w-3.5 h-3.5 text-google-blue"></i>
+                <span class="text-xs uppercase tracking-widest font-bold text-blue-300">O Ecossistema Integrado
+                    MS</span>
+            </div>
+
+            <h2 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight mb-5">
+                Duas frentes de engenharia para criar uma <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-sky-300 to-teal-300">hegemonia
+                    local irreversível</span>.
+            </h2>
+
+            <p class="text-base sm:text-lg text-slate-300 leading-relaxed">
+                Não existe milagre nem atalho. O que a MS entrega é uma combinação precisa entre alinhamento algorítmico
+                no Google e hardware inteligente de balcão.
+            </p>
+        </div>
+
+        <!-- ==========================================
+         BLOCO A: OTIMIZAÇÃO ESTRUTURAL DO PERFIL
+         ========================================== -->
+        <div id="solucao-gmb"
+            class="solution-block grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-32">
+
+            <!-- Coluna de Texto (7 cols) -->
+            <div class="lg:col-span-7 flex flex-col items-start order-2 lg:order-1">
+
+                <div
+                    class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-slate-900 border border-white/10 text-xs font-mono font-bold text-google-blue mb-4">
+                    <span>PILAR 01</span>
+                    <span class="text-slate-600">•</span>
+                    <span class="text-slate-300">ALGORITMO & METADADOS</span>
+                </div>
+
+                <h3 class="font-display font-extrabold text-3xl sm:text-4xl text-white mb-6 leading-tight">
+                    Otimização Estrutural do Perfil
+                    <span class="block text-xl sm:text-2xl text-slate-400 font-medium mt-1">SEO Local, Catálogo
+                        Estratégico & Vitrine Blindada</span>
+                </h3>
+
+                <p class="text-base text-slate-300 leading-relaxed mb-6">
+                    A maioria dos perfis foi criada de forma amadora e abandonada. A MS executa uma reengenharia
+                    completa: selecionamos categorias primárias e secundárias com base em dados de volume real em
+                    Jaraguá do Sul, estruturamos os serviços com palavras-chave transacionais e blindamos o perfil
+                    contra sugestões maliciosas de concorrentes.
+                </p>
+
+                <!-- Checklist de Recursos -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full mb-8">
+
+                    <div class="flex items-start gap-3">
+                        <div
+                            class="w-6 h-6 rounded-lg bg-green-950/60 border border-green-800/40 flex items-center justify-center text-google-green shrink-0 mt-0.5">
+                            <i data-lucide="check" class="w-4 h-4"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">Engenharia de Categorias</h4>
+                            <p class="text-xs text-slate-400">Mapeamento das categorias com maior intenção de compra.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-3">
+                        <div
+                            class="w-6 h-6 rounded-lg bg-green-950/60 border border-green-800/40 flex items-center justify-center text-google-green shrink-0 mt-0.5">
+                            <i data-lucide="check" class="w-4 h-4"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">Vitrine & Catálogo Ativo</h4>
+                            <p class="text-xs text-slate-400">Produtos e serviços com fotos de alta conversão e links
+                                diretos.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-3">
+                        <div
+                            class="w-6 h-6 rounded-lg bg-green-950/60 border border-green-800/40 flex items-center justify-center text-google-green shrink-0 mt-0.5">
+                            <i data-lucide="check" class="w-4 h-4"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">Georreferenciamento EXIF</h4>
+                            <p class="text-xs text-slate-400">Metadados de latitude/longitude injetados nos ativos
+                                visuais.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-3">
+                        <div
+                            class="w-6 h-6 rounded-lg bg-green-950/60 border border-green-800/40 flex items-center justify-center text-google-green shrink-0 mt-0.5">
+                            <i data-lucide="check" class="w-4 h-4"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">Blindagem Anti-Fraude</h4>
+                            <p class="text-xs text-slate-400">Proteção contra alterações indevidas de telefone e
+                                endereço.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <a href="#diagnostico"
+                    class="inline-flex items-center gap-2 text-sm font-bold text-blue-400 hover:text-blue-300 transition-colors">
+                    <span>Quero blindar e otimizar meu perfil</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+
+            </div>
+
+            <!-- Coluna Visual: Mockup Interativo Glassmorphism do Perfil #1 (5 cols) -->
+            <div class="lg:col-span-5 order-1 lg:order-2">
+                <div
+                    class="relative glass-panel rounded-3xl p-6 sm:p-7 border border-white/10 shadow-2xl overflow-hidden group">
+
+                    <!-- Selo Google Verified -->
+                    <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-5">
+                        <div class="flex items-center gap-2.5">
+                            <div
+                                class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white shadow-md">
+                                <i data-lucide="check" class="w-4 h-4 stroke-[3]"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs font-bold text-white block">Perfil Verificado & Blindado</span>
+                                <span class="text-[10px] text-slate-400">Diretrizes Oficiais Google Business</span>
+                            </div>
+                        </div>
+                        <span
+                            class="text-[11px] font-mono font-bold text-google-green bg-green-950/60 px-2 py-0.5 rounded border border-green-800/40">#1
+                            no Local Pack</span>
+                    </div>
+
+                    <!-- Card do Negócio Local -->
+                    <div class="bg-slate-900/90 rounded-2xl p-5 border border-white/5 mb-5">
+                        <div class="flex items-start justify-between mb-3">
+                            <div>
+                                <h4 class="font-display font-extrabold text-lg text-white">Sua Empresa de Alto Padrão
+                                </h4>
+                                <div class="flex items-center gap-1.5 mt-1">
+                                    <span class="font-bold text-sm text-google-yellow">4.9</span>
+                                    <div class="flex text-google-yellow">
+                                        <i data-lucide="star" class="w-3.5 h-3.5 fill-google-yellow"></i>
+                                        <i data-lucide="star" class="w-3.5 h-3.5 fill-google-yellow"></i>
+                                        <i data-lucide="star" class="w-3.5 h-3.5 fill-google-yellow"></i>
+                                        <i data-lucide="star" class="w-3.5 h-3.5 fill-google-yellow"></i>
+                                        <i data-lucide="star" class="w-3.5 h-3.5 fill-google-yellow"></i>
+                                    </div>
+                                    <span class="text-xs text-slate-400 font-mono">(482 avaliações reais)</span>
+                                </div>
+                            </div>
+                            <span
+                                class="px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase bg-blue-950 text-blue-300 border border-blue-800/40">Destaque</span>
+                        </div>
+
+                        <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                            Aberto agora • Centro, Jaraguá do Sul - SC • Atendimento com Hora Marcada
+                        </p>
+
+                        <!-- Ações rápidas de alta conversão -->
+                        <div class="grid grid-cols-3 gap-2 text-center text-xs">
+                            <div
+                                class="p-2.5 rounded-xl bg-blue-600/20 border border-blue-500/30 text-blue-300 font-bold flex flex-col items-center gap-1">
+                                <i data-lucide="phone-call" class="w-4 h-4 text-blue-400"></i>
+                                <span>Ligar Agora</span>
+                            </div>
+                            <div
+                                class="p-2.5 rounded-xl bg-slate-800/80 border border-white/5 text-slate-200 font-bold flex flex-col items-center gap-1">
+                                <i data-lucide="navigation" class="w-4 h-4 text-sky-400"></i>
+                                <span>Rotas (Maps)</span>
+                            </div>
+                            <div
+                                class="p-2.5 rounded-xl bg-slate-800/80 border border-white/5 text-slate-200 font-bold flex flex-col items-center gap-1">
+                                <i data-lucide="globe" class="w-4 h-4 text-emerald-400"></i>
+                                <span>Ver Catálogo</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Métricas de Crescimento no Google -->
+                    <div class="grid grid-cols-2 gap-3 text-xs">
+                        <div class="p-3 rounded-xl bg-slate-900/60 border border-white/5">
+                            <span class="text-slate-400 block mb-1">Rotas Solicitadas:</span>
+                            <div class="flex items-center gap-2">
+                                <span class="font-display font-extrabold text-base text-white">+284%</span>
+                                <span class="text-[10px] font-bold text-google-green">▲ Mensal</span>
+                            </div>
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-900/60 border border-white/5">
+                            <span class="text-slate-400 block mb-1">Chamadas Telefônicas:</span>
+                            <div class="flex items-center gap-2">
+                                <span class="font-display font-extrabold text-base text-white">+312%</span>
+                                <span class="text-[10px] font-bold text-google-green">▲ Mensal</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Efeito de radar no canto -->
+                    <div
+                        class="absolute -bottom-16 -right-16 w-36 h-36 rounded-full bg-blue-500/10 blur-2xl pointer-events-none">
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ==========================================
+         BLOCO B: PLACA NFC DE AVALIAÇÃO INTELIGENTE
+         ========================================== -->
+        <div id="solucao-nfc" class="solution-block grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+
+            <!-- Coluna Visual: Placa Física 3D Interativa em Acrílico Real (5 cols) -->
+            <div class="lg:col-span-5 acrylic-plate-container flex flex-col items-center order-1">
+
+                <div class="relative w-full flex items-center justify-center py-4">
+                    <!-- Efeito de anéis pulsantes de indução NFC atrás da placa física -->
+                    <div
+                        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 pointer-events-none -z-10">
+                        <div class="nfc-ring inset-0"></div>
+                        <div class="nfc-ring inset-0"></div>
+                        <div class="nfc-ring inset-0"></div>
+                    </div>
+
+                    <!-- Placa 3D Interativa com a Imagem Real Transparente (Clicável para abrir Modal) -->
+                    <div id="nfcPlateInteractive" onclick="abrirModal()" title="Toque para simular a aproximação NFC"
+                        class="w-full max-w-[320px] sm:max-w-[360px] cursor-pointer select-none relative group hover:scale-[1.02] transition-transform duration-300"
+                        data-tilt data-tilt-max="16" data-tilt-speed="400" data-tilt-perspective="1000">
+
+                        <!-- Imagem transparente da Placa Real em Acrílico -->
+                        <img src="Image.png" onerror="this.src='placa-sem-fundo.png'"
+                            alt="Placa NFC de Avaliação Google em Acrílico"
+                            class="w-full h-auto drop-shadow-2xl select-none pointer-events-none">
+
+                        <!-- Badge Flutuante no Hover: Clique para Simular -->
+                        <div
+                            class="absolute bottom-4 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-full bg-slate-950/85 border border-white/20 text-[11px] font-mono font-semibold text-white shadow-xl backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex items-center gap-1.5 whitespace-nowrap">
+                            <i data-lucide="smartphone" class="w-3.5 h-3.5 text-google-yellow"></i>
+                            <span>Clique para Simular Aproximação</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Micro-instrução e especificação da Placa Real com Botão de Ação -->
+                <div class="text-center mt-5 flex flex-col items-center gap-2.5">
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/90 border border-white/10 text-xs font-mono text-slate-300 shadow-md">
+                        <i data-lucide="radio" class="w-3.5 h-3.5 text-sky-400 animate-pulse"></i>
+                        <span>Placa Física em Acrílico Cristal 4mm</span>
+                    </div>
+
+                    <button type="button" onclick="abrirModal()"
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-600/20 hover:bg-blue-600/35 border border-blue-500/40 text-blue-300 hover:text-white font-mono text-xs font-semibold shadow-lg hover:shadow-blue-500/20 transition-all hover:scale-105 active:scale-95 cursor-pointer group">
+                        <span class="w-2 h-2 rounded-full bg-google-green animate-ping"></span>
+                        <i data-lucide="smartphone"
+                            class="w-4 h-4 text-google-yellow group-hover:rotate-12 transition-transform"></i>
+                        <span>Clique na Placa para Simular a Avaliação Google</span>
+                        <i data-lucide="arrow-up-right"
+                            class="w-3.5 h-3.5 text-slate-400 group-hover:text-white transition-colors"></i>
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Coluna de Texto (7 cols) -->
+            <div class="lg:col-span-7 flex flex-col items-start order-2">
+
+                <div
+                    class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-slate-900 border border-white/10 text-xs font-mono font-bold text-google-yellow mb-4">
+                    <span>PILAR 02</span>
+                    <span class="text-slate-600">•</span>
+                    <span class="text-slate-300">HARDWARE & APROXIMAÇÃO FÍSICA</span>
+                </div>
+
+                <h3 class="font-display font-extrabold text-3xl sm:text-4xl text-white mb-6 leading-tight">
+                    Placa NFC de Avaliação Inteligente
+                    <span class="block text-xl sm:text-2xl text-slate-400 font-medium mt-1">Transforme a Satisfação do
+                        Balcão em 5 Estrelas Imediatas</span>
+                </h3>
+
+                <p class="text-base text-slate-300 leading-relaxed mb-6">
+                    Elimine 100% da fricção. Chega de pedir para o cliente digitar o nome da loja, achar o link e
+                    pesquisar onde clicar. Com o hardware exclusivo da MS em acabamento Black Piano executivo, o cliente
+                    simplesmente aproxima o smartphone (iPhone ou Android) no balcão de pagamento e a tela oficial do
+                    Google abre instantaneamente com as 5 estrelas prontas para envio.
+                </p>
+
+                <!-- Três Passos do Fluxo em 3 Segundos -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full mb-8">
+
+                    <div class="p-4 rounded-2xl bg-slate-900/80 border border-white/5">
+                        <div
+                            class="w-8 h-8 rounded-lg bg-blue-950/70 border border-blue-800/40 flex items-center justify-center text-google-blue font-mono font-bold text-xs mb-3">
+                            01
+                        </div>
+                        <h4 class="text-sm font-bold text-white mb-1">Aproximação</h4>
+                        <p class="text-xs text-slate-400">Sem aplicativo, sem escanear, sem login complexo.</p>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-slate-900/80 border border-white/5">
+                        <div
+                            class="w-8 h-8 rounded-lg bg-amber-950/70 border border-amber-800/40 flex items-center justify-center text-google-yellow font-mono font-bold text-xs mb-3">
+                            02
+                        </div>
+                        <h4 class="text-sm font-bold text-white mb-1">Abertura Imediata</h4>
+                        <p class="text-xs text-slate-400">O link profundo aciona o formulário nativo do Google.</p>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-slate-900/80 border border-white/5">
+                        <div
+                            class="w-8 h-8 rounded-lg bg-green-950/70 border border-green-800/40 flex items-center justify-center text-google-green font-mono font-bold text-xs mb-3">
+                            03
+                        </div>
+                        <h4 class="text-sm font-bold text-white mb-1">5 Estrelas Publicadas</h4>
+                        <p class="text-xs text-slate-400">Mais de 90% dos clientes avaliam em menos de 10 segundos.</p>
+                    </div>
+
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                    <a href="#roi"
+                        class="google-gradient-border inline-flex items-center gap-2 px-6 py-3 rounded-xl text-xs uppercase tracking-wider font-bold text-white bg-slate-900 hover:bg-slate-800 transition-all duration-300">
+                        <span>Simular Retorno Financeiro</span>
+                        <i data-lucide="calculator" class="w-4 h-4 text-google-yellow"></i>
+                    </a>
+                    <span class="text-xs text-slate-400 font-mono">Hardware com durabilidade vitalícia e garantia
+                        MS.</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- =========================================================================
+       CALCULADORA INTERATIVA DE ROI / POTENCIAL DE FATURAMENTO LOCAL
+       Mostra ao empresário o retorno concreto ao assumir o Top 3 no Google Maps
+       ========================================================================= -->
+    <section id="roi" class="relative py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10">
+        <div class="glass-panel rounded-3xl p-8 sm:p-12 border border-white/10 relative overflow-hidden">
+
+            <div class="absolute -top-24 -left-24 w-72 h-72 rounded-full bg-blue-500/10 blur-3xl pointer-events-none">
+            </div>
+            <div
+                class="absolute -bottom-24 -right-24 w-72 h-72 rounded-full bg-green-500/10 blur-3xl pointer-events-none">
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+
+                <!-- Controles Interativos da Calculadora -->
+                <div class="lg:col-span-7 flex flex-col">
+                    <div
+                        class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-950/60 border border-blue-800/40 mb-4 w-fit">
+                        <i data-lucide="trending-up" class="w-3.5 h-3.5 text-google-blue"></i>
+                        <span class="text-xs uppercase tracking-widest font-bold text-blue-300">Simulador de Expansão de
+                            Caixa</span>
+                    </div>
+
+                    <h3 class="font-display font-extrabold text-2xl sm:text-3xl text-white mb-4">
+                        Quanto o Top 3 do Google Maps pode adicionar ao seu faturamento em Jaraguá do Sul?
+                    </h3>
+
+                    <p class="text-sm text-slate-300 mb-8 leading-relaxed">
+                        Ajuste os parâmetros do seu negócio para estimar a receita adicional capturada ao assumir a
+                        liderança das buscas locais:
+                    </p>
+
+                    <!-- Seletor de Nicho / Segmento (Glassmorphism Minimalista) -->
+                    <div class="mb-7">
+                        <label for="segmentSelect"
+                            class="text-xs uppercase tracking-wider font-bold text-slate-300 mb-2 flex items-center justify-between">
+                            <span class="flex items-center gap-1.5">
+                                <i data-lucide="layers" class="w-3.5 h-3.5 text-google-blue"></i>
+                                <span>Qual o seu segmento?</span>
+                            </span>
+                            <span id="segmentMultiplierBadge"
+                                class="text-[11px] font-mono font-bold text-google-green bg-green-950/60 border border-green-800/40 px-2 py-0.5 rounded">
+                                +45% de aumento estimado
+                            </span>
+                        </label>
+                        <div class="relative">
+                            <select id="segmentSelect"
+                                class="w-full bg-slate-900/90 text-white text-sm font-semibold rounded-xl border border-white/10 px-4 py-3.5 appearance-none focus:outline-none focus:border-blue-500/50 backdrop-blur-md cursor-pointer transition-all shadow-inner hover:border-white/20">
+                                <option value="0.45" class="bg-slate-900 text-white">Alimentação / Delivery</option>
+                                <option value="0.40" class="bg-slate-900 text-white">Beleza / Estética (ex: Barbearias)
+                                </option>
+                                <option value="0.25" class="bg-slate-900 text-white">Varejo / Lojas Físicas</option>
+                                <option value="0.20" class="bg-slate-900 text-white">Serviços Locais / Manutenção
+                                </option>
+                            </select>
+                            <div
+                                class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-400">
+                                <i data-lucide="chevron-down" class="w-4 h-4 text-blue-400"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slider 1: Tíquete Médio -->
+                    <div class="mb-7">
+                        <div class="flex items-center justify-between mb-2">
+                            <label for="ticketInput"
+                                class="text-xs uppercase tracking-wider font-bold text-slate-300">Tíquete Médio do seu
+                                Produto/Serviço:</label>
+                            <span class="font-mono font-bold text-base text-blue-400" id="ticketLabel">R$ 150</span>
+                        </div>
+                        <input type="range" id="ticketInput" min="20" max="3000" step="10" value="150" class="w-full">
+                        <div class="flex justify-between text-[11px] text-slate-500 font-mono mt-1">
+                            <span>R$ 20</span>
+                            <span>R$ 1.500</span>
+                            <span>R$ 3.000+</span>
+                        </div>
+                    </div>
+
+                    <!-- Slider 2: Clientes Atuais por Mês -->
+                    <div class="mb-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <label for="clientsInput"
+                                class="text-xs uppercase tracking-wider font-bold text-slate-300">Clientes Atuais
+                                Atendidos por Mês:</label>
+                            <div class="flex items-center gap-2">
+                                <span class="font-mono font-bold text-base text-white" id="currentClientsLabel">120
+                                    clientes</span>
+                                <span
+                                    class="font-mono font-bold text-xs text-google-green bg-green-950/70 border border-green-800/40 px-2 py-0.5 rounded-full"
+                                    id="newClientsBadge">+54 novos (+45%)</span>
+                            </div>
+                        </div>
+                        <input type="range" id="clientsInput" min="20" max="800" step="5" value="120" class="w-full">
+                        <div class="flex justify-between text-[11px] text-slate-500 font-mono mt-1">
+                            <span>20 clientes</span>
+                            <span>400 clientes</span>
+                            <span>800+ clientes</span>
+                        </div>
+                    </div>
+
+                    <p class="text-[11px] text-slate-400 italic">
+                        *Baseado em taxas médias de conversão local medidas em negócios atendidos na microrregião de
+                        Jaraguá do Sul.
+                    </p>
+                </div>
+
+                <!-- Painel de Resultado do ROI -->
+                <div class="lg:col-span-5">
+                    <div
+                        class="bg-gradient-to-b from-slate-900 to-slate-950 p-7 sm:p-8 rounded-2xl border border-white/10 shadow-2xl flex flex-col items-center text-center relative overflow-hidden">
+
+                        <div class="absolute inset-x-0 top-0 h-1 google-accent-line"></div>
+
+                        <span class="text-xs uppercase tracking-widest font-mono font-semibold text-slate-400 mb-2">
+                            Receita Adicional Estimada (Anual)
+                        </span>
+
+                        <div class="font-display font-extrabold text-4xl sm:text-5xl text-white tracking-tight my-3"
+                            id="annualRoiLabel">
+                            R$ 97.200
+                        </div>
+
+                        <span
+                            class="text-xs text-google-green font-mono font-bold bg-green-950/70 border border-green-800/40 px-3 py-1 rounded-full mb-6">
+                            + <span id="monthlyRoiLabel">R$ 8.100</span> / mês no seu caixa
+                        </span>
+
+                        <!-- Microcopy Dinâmico por Nicho -->
+                        <p class="text-xs text-slate-300 leading-relaxed mb-6 bg-slate-900/60 p-3.5 rounded-xl border border-white/5"
+                            id="roiMicrocopy">
+                            Esta projeção estima um aumento de 45% no seu fluxo — a média de mercado capturada por
+                            negócios de Alimentação que dominam o Google.
+                        </p>
+
+                        <a href="https://wa.me/5547999999999?text=Ol%C3%A1!%20Fiz%20a%20simula%C3%A7%C3%A3o%20na%20calculadora%20da%20MS%20e%20gostaria%20de%20capturar%20esse%20resultado%20para%20minha%20empresa."
+                            target="_blank" id="roiCtaBtn"
+                            class="w-full py-4 rounded-xl text-xs uppercase tracking-wider font-extrabold text-white bg-blue-600 hover:bg-blue-500 transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-blue-600/30">
+                            <span>Capturar Esse Faturamento no Topo</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- =========================================================================
+       METODOLOGIA MS EM 4 ETAPAS (PRECISÃO DE ENGENHARIA)
+       ========================================================================= -->
+    <section id="metodologia" class="relative py-20 md:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-20">
+        <div class="flex flex-col items-center text-center max-w-3xl mx-auto mb-14">
+
+            <div
+                class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-900/90 border border-white/10 mb-4 backdrop-blur-md">
+                <i data-lucide="git-commit" class="w-3.5 h-3.5 text-sky-400"></i>
+                <span class="text-xs uppercase tracking-widest font-bold text-slate-300">Protocolo de
+                    Implementação</span>
+            </div>
+
+            <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white tracking-tight mb-4">
+                Como transformamos seu negócio na maior referência do mapa.
+            </h2>
+
+            <p class="text-base text-slate-300 leading-relaxed">
+                Uma esteira validada em 3 etapas de alta precisão, sem atrito para sua equipe e com foco estrito na
+                liderança das buscas locais.
+            </p>
+        </div>
+
+        <!-- 3 Passos da Metodologia Centrados (Glassmorphism de Alta Definição) -->
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 relative z-10">
+
+            <!-- Passo 1: Diagnóstico e Estruturação -->
+            <div
+                class="step-card glass-panel rounded-3xl p-8 flex flex-col justify-between border border-white/10 hover:border-blue-500/40 transition-all duration-300 group relative overflow-hidden shadow-2xl">
+                <div
+                    class="absolute -top-10 -right-10 w-28 h-28 rounded-full bg-blue-500/10 blur-2xl group-hover:bg-blue-500/20 transition-all pointer-events-none">
+                </div>
+
+                <div>
+                    <div class="flex items-center justify-between mb-6">
+                        <span
+                            class="text-xs font-mono font-bold tracking-wider uppercase text-blue-400 bg-blue-950/70 border border-blue-800/40 px-3 py-1 rounded-full">
+                            Passo 01
+                        </span>
+                        <div
+                            class="w-12 h-12 rounded-2xl bg-slate-900 border border-blue-500/30 flex items-center justify-center text-google-blue group-hover:scale-105 transition-transform shadow-lg">
+                            <i data-lucide="scan" class="w-6 h-6"></i>
+                        </div>
+                    </div>
+
+                    <h3
+                        class="font-display font-bold text-xl text-white mb-2 group-hover:text-blue-300 transition-colors">
+                        Diagnóstico e Estruturação
+                    </h3>
+                    <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4 font-mono">
+                        Reengenharia & Blindagem
+                    </p>
+
+                    <p class="text-sm text-slate-300 leading-relaxed mb-6">
+                        Mapeamos os pontos cegos de busca em Jaraguá do Sul, estruturamos categorias primárias de alta
+                        conversão, cadastramos o catálogo otimizado e blindamos seu perfil contra alterações maliciosas
+                        de concorrentes.
+                    </p>
+                </div>
+
+                <div class="pt-5 border-t border-white/5 flex items-center justify-between text-xs font-mono">
+                    <span class="text-slate-400">Entrega:</span>
+                    <span class="text-google-blue font-bold">Raio-X & Perfil Blindado</span>
+                </div>
+            </div>
+
+            <!-- Passo 2: Configuração da Placa NFC -->
+            <div
+                class="step-card glass-panel rounded-3xl p-8 flex flex-col justify-between border border-white/10 hover:border-amber-500/40 transition-all duration-300 group relative overflow-hidden shadow-2xl">
+                <div
+                    class="absolute -top-10 -right-10 w-28 h-28 rounded-full bg-amber-500/10 blur-2xl group-hover:bg-amber-500/20 transition-all pointer-events-none">
+                </div>
+
+                <div>
+                    <div class="flex items-center justify-between mb-6">
+                        <span
+                            class="text-xs font-mono font-bold tracking-wider uppercase text-amber-400 bg-amber-950/70 border border-amber-800/40 px-3 py-1 rounded-full">
+                            Passo 02
+                        </span>
+                        <div
+                            class="w-12 h-12 rounded-2xl bg-slate-900 border border-amber-500/30 flex items-center justify-center text-google-yellow group-hover:scale-105 transition-transform shadow-lg">
+                            <i data-lucide="radio" class="w-6 h-6"></i>
+                        </div>
+                    </div>
+
+                    <h3
+                        class="font-display font-bold text-xl text-white mb-2 group-hover:text-amber-300 transition-colors">
+                        Configuração da Placa NFC
+                    </h3>
+                    <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4 font-mono">
+                        Hardware & Ativação de Balcão
+                    </p>
+
+                    <p class="text-sm text-slate-300 leading-relaxed mb-6">
+                        Codificamos o chip inteligente NTAG213 com link profundo direto para a tela de 5 estrelas da sua
+                        empresa. Entregamos a placa executiva em acrílico Black Piano pronta para instalação no balcão e
+                        orientamos sua equipe.
+                    </p>
+                </div>
+
+                <div class="pt-5 border-t border-white/5 flex items-center justify-between text-xs font-mono">
+                    <span class="text-slate-400">Tecnologia:</span>
+                    <span class="text-google-yellow font-bold">NFC Universal + QR Backup</span>
+                </div>
+            </div>
+
+            <!-- Passo 3: Captação de Avaliações -->
+            <div
+                class="step-card glass-panel rounded-3xl p-8 flex flex-col justify-between border border-white/10 hover:border-green-500/40 transition-all duration-300 group relative overflow-hidden shadow-2xl">
+                <div
+                    class="absolute -top-10 -right-10 w-28 h-28 rounded-full bg-green-500/10 blur-2xl group-hover:bg-green-500/20 transition-all pointer-events-none">
+                </div>
+
+                <div>
+                    <div class="flex items-center justify-between mb-6">
+                        <span
+                            class="text-xs font-mono font-bold tracking-wider uppercase text-green-400 bg-green-950/70 border border-green-800/40 px-3 py-1 rounded-full">
+                            Passo 03
+                        </span>
+                        <div
+                            class="w-12 h-12 rounded-2xl bg-slate-900 border border-green-500/30 flex items-center justify-center text-google-green group-hover:scale-105 transition-transform shadow-lg">
+                            <i data-lucide="star" class="w-6 h-6"></i>
+                        </div>
+                    </div>
+
+                    <h3
+                        class="font-display font-bold text-xl text-white mb-2 group-hover:text-green-300 transition-colors">
+                        Captação de Avaliações
+                    </h3>
+                    <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4 font-mono">
+                        Autoridade & Hegemonia Local
+                    </p>
+
+                    <p class="text-sm text-slate-300 leading-relaxed mb-6">
+                        Seus clientes aproximam o celular no caixa e avaliam em menos de 3 segundos sem digitar links. O
+                        fluxo contínuo de avaliações eleva o score do perfil, consolida o posicionamento no Top 3 do
+                        Google Maps e atrai novos compradores.
+                    </p>
+                </div>
+
+                <div class="pt-5 border-t border-white/5 flex items-center justify-between text-xs font-mono">
+                    <span class="text-slate-400">Resultado:</span>
+                    <span class="text-google-green font-bold">5★ em Tempo Real</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- =========================================================================
+       FAQ ESTRATÉGICO (ACORDEÃO GLASSMORPHISM)
+       Quebra de objeções com foco em conversão corporativa
+       ========================================================================= -->
+    <section class="relative py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto z-10">
+        <div class="flex flex-col items-center text-center mb-12">
+            <div
+                class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-900 border border-white/10 mb-3">
+                <i data-lucide="help-circle" class="w-3.5 h-3.5 text-google-blue"></i>
+                <span class="text-xs uppercase tracking-widest font-bold text-slate-300">Perguntas Frequentes</span>
+            </div>
+            <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white tracking-tight">
+                Perguntas Estratégicas
+            </h2>
+        </div>
+
+        <div class="flex flex-col gap-4">
+
+            <!-- FAQ 1 -->
+            <div
+                class="faq-item glass-panel rounded-2xl border border-white/5 overflow-hidden transition-all duration-300">
+                <button
+                    class="faq-toggle w-full p-6 text-left flex items-center justify-between gap-4 font-display font-bold text-base sm:text-lg text-white focus:outline-none">
+                    <span>Em quanto tempo os resultados de visibilidade começam a aparecer?</span>
+                    <i data-lucide="plus"
+                        class="faq-icon w-5 h-5 text-blue-400 shrink-0 transition-transform duration-300"></i>
+                </button>
+                <div
+                    class="faq-content hidden px-6 pb-6 text-sm text-slate-300 leading-relaxed border-t border-white/5 pt-4">
+                    Com a implantação da Placa NFC, o ganho de avaliações 5 estrelas é imediato nas primeiras 24 horas
+                    de uso no balcão. A otimização estrutural do perfil Google costuma surtir impacto perceptível nas
+                    métricas de buscas e rotas entre 14 e 35 dias após a indexação dos novos metadados algorítmicos.
+                </div>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div
+                class="faq-item glass-panel rounded-2xl border border-white/5 overflow-hidden transition-all duration-300">
+                <button
+                    class="faq-toggle w-full p-6 text-left flex items-center justify-between gap-4 font-display font-bold text-base sm:text-lg text-white focus:outline-none">
+                    <span>A Placa NFC funciona em qualquer smartphone?</span>
+                    <i data-lucide="plus"
+                        class="faq-icon w-5 h-5 text-blue-400 shrink-0 transition-transform duration-300"></i>
+                </button>
+                <div
+                    class="faq-content hidden px-6 pb-6 text-sm text-slate-300 leading-relaxed border-t border-white/5 pt-4">
+                    Sim! Nossas placas utilizam chips universais NTAG213 de frequência regulamentada, funcionando com
+                    100% dos iPhones (do modelo XR ao mais atual) e em todos os aparelhos Android com sensor NFC ativo.
+                    Além disso, a placa possui um QR Code de backup gravado a laser para modelos mais antigos.
+                </div>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div
+                class="faq-item glass-panel rounded-2xl border border-white/5 overflow-hidden transition-all duration-300">
+                <button
+                    class="faq-toggle w-full p-6 text-left flex items-center justify-between gap-4 font-display font-bold text-base sm:text-lg text-white focus:outline-none">
+                    <span>O que é a blindagem contra sugestões de concorrentes?</span>
+                    <i data-lucide="plus"
+                        class="faq-icon w-5 h-5 text-blue-400 shrink-0 transition-transform duration-300"></i>
+                </button>
+                <div
+                    class="faq-content hidden px-6 pb-6 text-sm text-slate-300 leading-relaxed border-t border-white/5 pt-4">
+                    No Google Meu Negócio amador, qualquer usuário ou concorrente de má fé pode sugerir que seu negócio
+                    "fechou permanentemente" ou alterar seu número de telefone. Nossa metodologia ativa as diretrizes de
+                    conformidade institucional que barram essas alterações sem a aprovação do proprietário verificado.
+                </div>
+            </div>
+
+            <!-- FAQ 4 -->
+            <div
+                class="faq-item glass-panel rounded-2xl border border-white/5 overflow-hidden transition-all duration-300">
+                <button
+                    class="faq-toggle w-full p-6 text-left flex items-center justify-between gap-4 font-display font-bold text-base sm:text-lg text-white focus:outline-none">
+                    <span>A MS atende concorrentes diretos no mesmo bairro?</span>
+                    <i data-lucide="plus"
+                        class="faq-icon w-5 h-5 text-blue-400 shrink-0 transition-transform duration-300"></i>
+                </button>
+                <div
+                    class="faq-content hidden px-6 pb-6 text-sm text-slate-300 leading-relaxed border-t border-white/5 pt-4">
+                    Trabalhamos com política de proteção e exclusividade territorial para clientes do pacote completo em
+                    Jaraguá do Sul. Não posicionamos dois negócios do mesmo nicho na mesma microrregião geográfica,
+                    assegurando que o investimento do nosso parceiro gere liderança isolada.
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- =========================================================================
+       CTA FINAL DE CONVERSÃO HIGH-TICKET (FECHAMENTO COM GARANTIA)
+       ========================================================================= -->
+    <section class="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10">
+        <div
+            class="glass-panel rounded-3xl p-8 sm:p-14 border border-white/10 text-center flex flex-col items-center relative overflow-hidden">
+
+            <!-- Linha sutil superior -->
+            <div class="absolute inset-x-0 top-0 h-1 google-accent-line"></div>
+
+            <div
+                class="w-16 h-16 rounded-2xl bg-slate-900 border border-white/10 flex items-center justify-center text-white mb-6 shadow-2xl shadow-blue-500/20">
+                <svg class="w-10 h-10" viewBox="0 0 100 100" fill="none">
+                    <path d="M12 28L42 56L68 32L54 20L38 34L26 22L12 28Z" fill="#4285F4" />
+                    <path d="M12 28L28 72L42 56L26 22L12 28Z" fill="#1A73E8" />
+                    <path d="M28 72L44 86L58 74L42 56L28 72Z" fill="#EA4335" />
+                    <path d="M42 56L58 74L86 50L72 36L58 48L42 56Z" fill="#34A853" />
+                    <path d="M68 32L86 50L88 28L74 20L68 32Z" fill="#FBBC05" />
+                </svg>
+            </div>
+
+            <span class="text-xs uppercase tracking-[0.25em] font-mono font-bold text-google-blue mb-3">
+                Liderança Algorítmica & Presença Física
+            </span>
+
+            <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-white tracking-tight max-w-3xl mb-6">
+                Pronto para transformar o Google na sua maior fonte de clientes em Jaraguá do Sul?
+            </h2>
+
+            <p class="text-base sm:text-lg text-slate-300 max-w-2xl mb-10 leading-relaxed">
+                Solicite uma análise preliminar gratuita do seu perfil e descubra exatamente quantos clientes você está
+                perdendo para os concorrentes da sua região.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+                <a href="https://wa.me/5547999999999?text=Ol%C3%A1!%20Quero%20solicitar%20uma%20an%C3%A1lise%20estrat%C3%A9gica%20gratuita%20para%20minha%20empresa%20com%20a%20MS%20Otimiza%C3%A7%C3%A3o."
+                    target="_blank"
+                    class="btn-cta-pulse w-full sm:w-auto inline-flex items-center justify-center gap-3 px-10 py-5 rounded-2xl text-sm uppercase tracking-wider font-extrabold text-white bg-blue-600 hover:bg-blue-500 transition-all duration-300 hover:scale-[1.02] shadow-xl shadow-blue-600/30">
+                    <i data-lucide="message-circle" class="w-5 h-5 text-white"></i>
+                    <span>Solicitar Análise Estratégica via WhatsApp</span>
+                </a>
+            </div>
+
+            <div class="mt-8 flex items-center gap-6 text-xs text-slate-400 font-mono">
+                <span class="flex items-center gap-1.5">
+                    <i data-lucide="shield-check" class="w-4 h-4 text-google-green"></i> Sem Compromisso Financeiro
+                </span>
+                <span class="flex items-center gap-1.5">
+                    <i data-lucide="clock" class="w-4 h-4 text-google-yellow"></i> Retorno em até 1h Comercial
+                </span>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- =========================================================================
+       FOOTER CORPORATIVO MINIMALISTA
+       Informações de contato da MS Otimização de Negócios e links âncora
+       ========================================================================= -->
+    <footer class="relative z-10 border-t border-white/5 bg-slate-950/90 pt-16 pb-12 px-4 sm:px-6 lg:px-8">
+        <div
+            class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 pb-12 border-b border-white/5">
+
+            <!-- Brand & Descrição -->
+            <div class="flex flex-col items-center md:items-start text-center md:text-left">
+                <div class="flex items-center gap-3 mb-3">
+                    <div
+                        class="w-8 h-8 rounded-lg bg-slate-900 border border-white/10 flex items-center justify-center">
+                        <svg class="w-5 h-5" viewBox="0 0 100 100" fill="none">
+                            <path d="M12 28L42 56L68 32L54 20L38 34L26 22L12 28Z" fill="#4285F4" />
+                            <path d="M12 28L28 72L42 56L26 22L12 28Z" fill="#1A73E8" />
+                            <path d="M28 72L44 86L58 74L42 56L28 72Z" fill="#EA4335" />
+                            <path d="M42 56L58 74L86 50L72 36L58 48L42 56Z" fill="#34A853" />
+                            <path d="M68 32L86 50L88 28L74 20L68 32Z" fill="#FBBC05" />
+                        </svg>
+                    </div>
+                    <span class="font-display font-extrabold text-lg text-white">MS Otimização de Negócios</span>
+                </div>
+                <p class="text-xs text-slate-400 max-w-sm leading-relaxed">
+                    Engenharia de presença no Google Maps e dispositivos NFC de avaliação para empresas de destaque em
+                    Jaraguá do Sul e região.
+                </p>
+            </div>
+
+            <!-- Links Âncora Rápidos -->
+            <div class="flex flex-wrap justify-center gap-6 text-xs text-slate-400 font-medium">
+                <a href="#hero" class="hover:text-white transition-colors">Início</a>
+                <a href="#diagnostico" class="hover:text-white transition-colors">Diagnóstico de Dor</a>
+                <a href="#solucao-gmb" class="hover:text-white transition-colors">Estrutura GMB</a>
+                <a href="#solucao-nfc" class="hover:text-white transition-colors">Placa NFC</a>
+                <a href="#metodologia" class="hover:text-white transition-colors">Metodologia</a>
+                <a href="#roi" class="hover:text-white transition-colors">Calculadora</a>
+            </div>
+
+            <!-- Contato & Localização -->
+            <div class="flex flex-col items-center md:items-end text-xs text-slate-400">
+                <span class="text-white font-semibold">Jaraguá do Sul - SC</span>
+                <span class="mt-0.5">Vale do Itapocu & Norte Catarinense</span>
+                <a href="mailto:contato@msotimizacao.com.br"
+                    class="text-blue-400 hover:underline mt-1">contato@msotimizacao.com.br</a>
+            </div>
+
+        </div>
+
+        <div
+            class="max-w-7xl mx-auto pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 gap-4">
+            <span>&copy; <span id="currentYear"></span> MS Otimização de Negócios. Todos os direitos reservados.</span>
+            <span class="text-center sm:text-right">Desenvolvido com tecnologia WebGL, GSAP e Tailwind CSS.</span>
+        </div>
+    </footer>
+
+    <!-- Botão Flutuante de WhatsApp Glassmorphism -->
+    <a href="https://wa.me/5547999999999?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20MS%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida."
+        target="_blank" rel="noopener noreferrer" aria-label="Falar pelo WhatsApp"
+        class="fixed bottom-6 right-6 z-40 p-3.5 rounded-full bg-slate-900/90 border border-green-500/40 text-google-green hover:text-white hover:bg-green-600 shadow-2xl shadow-green-500/30 transition-all duration-300 hover:scale-110 group">
+        <i data-lucide="message-circle" class="w-6 h-6"></i>
+        <!-- Tooltip -->
+        <span
+            class="absolute right-full mr-3 top-1/2 -translate-y-1/2 px-3 py-1.5 rounded-xl bg-slate-900 text-xs font-semibold text-white border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap shadow-xl">
+            Fale com um Especialista
+        </span>
+    </a>
+
+    <!-- =========================================================================
+       SCRIPTS: THREE.JS (PLEXUS 3D), GSAP SCROLL ANIMATIONS & INTERATIVIDADE
+       ========================================================================= -->
+    <script>
+        // Inicialização dos ícones Lucide
+        document.addEventListener("DOMContentLoaded", () => {
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+        });
+
+        // =========================================================================
+        // 1. THREE.JS INTERACTIVE PLEXUS / NETWORK BACKGROUND
+        // =========================================================================
+        (function initThreePlexus() {
+            const canvas = document.getElementById('three-network-canvas');
+            if (!canvas) return;
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 1, 1000);
+            camera.position.z = 220;
+
+            const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+            // Configuração de Partículas do Plexus
+            const isMobile = window.innerWidth < 768;
+            const particleCount = isMobile ? 65 : 120;
+            const maxDistance = isMobile ? 38 : 46;
+
+            const positions = new Float32Array(particleCount * 3);
+            const velocities = [];
+
+            // Google Colors em hexadecimal para nós de destaque esparsos
+            const googleColors = [
+                new THREE.Color('#4285F4'), // Blue
+                new THREE.Color('#EA4335'), // Red
+                new THREE.Color('#FBBC05'), // Yellow
+                new THREE.Color('#34A853'), // Green
+                new THREE.Color('#38BDF8'), // Sky
+            ];
+
+            const particleColors = new Float32Array(particleCount * 3);
+
+            for (let i = 0; i < particleCount; i++) {
+                const x = (Math.random() - 0.5) * 260;
+                const y = (Math.random() - 0.5) * 160;
+                const z = (Math.random() - 0.5) * 120;
+
+                positions[i * 3] = x;
+                positions[i * 3 + 1] = y;
+                positions[i * 3 + 2] = z;
+
+                velocities.push({
+                    x: (Math.random() - 0.5) * 0.18,
+                    y: (Math.random() - 0.5) * 0.18,
+                    z: (Math.random() - 0.5) * 0.12,
+                });
+
+                // 80% das partículas são neutras e 20% com acento sutil Google
+                if (Math.random() < 0.22) {
+                    const c = googleColors[Math.floor(Math.random() * googleColors.length)];
+                    particleColors[i * 3] = c.r;
+                    particleColors[i * 3 + 1] = c.g;
+                    particleColors[i * 3 + 2] = c.b;
+                } else {
+                    // Tom ciano/prata suave corporativo
+                    particleColors[i * 3] = 0.45;
+                    particleColors[i * 3 + 1] = 0.58;
+                    particleColors[i * 3 + 2] = 0.78;
+                }
+            }
+
+            // Geometria de Pontos
+            const pointGeometry = new THREE.BufferGeometry();
+            pointGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            pointGeometry.setAttribute('color', new THREE.BufferAttribute(particleColors, 3));
+
+            // Material de Pontos
+            const pointMaterial = new THREE.PointsMaterial({
+                size: isMobile ? 3.2 : 4.0,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.85,
+                blending: THREE.AdditiveBlending,
+            });
+
+            const particleSystem = new THREE.Points(pointGeometry, pointMaterial);
+            scene.add(particleSystem);
+
+            // Geometria de Linhas de Conexão
+            const maxLines = particleCount * particleCount;
+            const linePositions = new Float32Array(maxLines * 6);
+            const lineColors = new Float32Array(maxLines * 6);
+
+            const lineGeometry = new THREE.BufferGeometry();
+            lineGeometry.setAttribute('position', new THREE.BufferAttribute(linePositions, 3).setUsage(THREE.DynamicDrawUsage));
+            lineGeometry.setAttribute('color', new THREE.BufferAttribute(lineColors, 3).setUsage(THREE.DynamicDrawUsage));
+
+            const lineMaterial = new THREE.LineBasicMaterial({
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.35,
+                blending: THREE.AdditiveBlending,
+            });
+
+            const lineMesh = new THREE.LineSegments(lineGeometry, lineMaterial);
+            scene.add(lineMesh);
+
+            // Controle de Movimento do Mouse (Interação Suave)
+            let mouseX = 0;
+            let mouseY = 0;
+            let targetX = 0;
+            let targetY = 0;
+
+            window.addEventListener('mousemove', (event) => {
+                const halfX = window.innerWidth / 2;
+                const halfY = window.innerHeight / 2;
+                mouseX = (event.clientX - halfX) * 0.08;
+                mouseY = (event.clientY - halfY) * 0.08;
+            });
+
+            // Loop de Animação 60fps
+            function animate() {
+                requestAnimationFrame(animate);
+
+                // Suavização do movimento de câmera
+                targetX += (mouseX - targetX) * 0.04;
+                targetY += (mouseY - targetY) * 0.04;
+
+                camera.position.x = targetX;
+                camera.position.y = -targetY;
+                camera.lookAt(scene.position);
+
+                const posAttr = pointGeometry.attributes.position;
+                const posArray = posAttr.array;
+
+                // Atualização das posições das partículas
+                for (let i = 0; i < particleCount; i++) {
+                    posArray[i * 3] += velocities[i].x;
+                    posArray[i * 3 + 1] += velocities[i].y;
+                    posArray[i * 3 + 2] += velocities[i].z;
+
+                    // Inversão ao atingir bordas
+                    if (posArray[i * 3] < -140 || posArray[i * 3] > 140) velocities[i].x *= -1;
+                    if (posArray[i * 3 + 1] < -90 || posArray[i * 3 + 1] > 90) velocities[i].y *= -1;
+                    if (posArray[i * 3 + 2] < -70 || posArray[i * 3 + 2] > 70) velocities[i].z *= -1;
+                }
+                posAttr.needsUpdate = true;
+
+                // Atualização das conexões entre partículas próximas
+                let lineIndex = 0;
+                for (let i = 0; i < particleCount; i++) {
+                    for (let j = i + 1; j < particleCount; j++) {
+                        const dx = posArray[i * 3] - posArray[j * 3];
+                        const dy = posArray[i * 3 + 1] - posArray[j * 3 + 1];
+                        const dz = posArray[i * 3 + 2] - posArray[j * 3 + 2];
+                        const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+
+                        if (dist < maxDistance) {
+                            const alpha = (1 - dist / maxDistance) * 0.35;
+
+                            linePositions[lineIndex * 6] = posArray[i * 3];
+                            linePositions[lineIndex * 6 + 1] = posArray[i * 3 + 1];
+                            linePositions[lineIndex * 6 + 2] = posArray[i * 3 + 2];
+
+                            linePositions[lineIndex * 6 + 3] = posArray[j * 3];
+                            linePositions[lineIndex * 6 + 4] = posArray[j * 3 + 1];
+                            linePositions[lineIndex * 6 + 5] = posArray[j * 3 + 2];
+
+                            // Cor da linha
+                            for (let c = 0; c < 2; c++) {
+                                const offset = lineIndex * 6 + c * 3;
+                                lineColors[offset] = 0.26 * alpha;     // R
+                                lineColors[offset + 1] = 0.52 * alpha; // G
+                                lineColors[offset + 2] = 0.95 * alpha; // B
+                            }
+
+                            lineIndex++;
+                        }
+                    }
+                }
+
+                lineGeometry.setDrawRange(0, lineIndex * 2);
+                lineGeometry.attributes.position.needsUpdate = true;
+                lineGeometry.attributes.color.needsUpdate = true;
+
+                renderer.render(scene, camera);
+            }
+
+            animate();
+
+            // Redimensionamento responsivo
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        })();
+
+        // =========================================================================
+        // 2. GSAP & SCROLLTRIGGER: COREOGRAFIA DE ANIMAÇÕES
+        // =========================================================================
+        document.addEventListener("DOMContentLoaded", () => {
+            if (typeof gsap !== 'undefined') {
+                gsap.registerPlugin(ScrollTrigger);
+
+                // Timeline de Entrada da Hero Section
+                const heroTl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+                heroTl.from("#mainHeader", {
+                    y: -40,
+                    opacity: 0,
+                    duration: 0.9,
+                    delay: 0.1
+                })
+                    .from(".hero-stagger", {
+                        y: 35,
+                        opacity: 0,
+                        duration: 0.85,
+                        stagger: 0.14
+                    }, "-=0.5");
+
+                // Animação de Scroll dos Cartões de Diagnóstico Reveladores
+                // Animação de Scroll dos Cartões 3D Flip de Diagnóstico
+                const flipCards = document.querySelectorAll(".flip-card");
+                if (flipCards.length > 0) {
+                    gsap.fromTo(".flip-card",
+                        { opacity: 0, y: 35 },
+                        {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.8,
+                            stagger: 0.15,
+                            ease: "power2.out",
+                            clearProps: "all",
+                            scrollTrigger: {
+                                trigger: "#diagnostico",
+                                start: "top 90%",
+                                once: true,
+                            }
+                        }
+                    );
+                }
+
+                // Animação dos Blocos de Solução (Bloco A e Bloco B)
+                gsap.utils.toArray(".solution-block").forEach((block) => {
+                    gsap.from(block, {
+                        scrollTrigger: {
+                            trigger: block,
+                            start: "top 75%",
+                        },
+                        y: 50,
+                        opacity: 0,
+                        duration: 1,
+                        ease: "power2.out"
+                    });
+                });
+
+                // Animação dos Passos da Metodologia com gatilho fluido e garantia de visibilidade
+                const stepCards = document.querySelectorAll(".step-card");
+                if (stepCards.length > 0) {
+                    gsap.fromTo(".step-card",
+                        { opacity: 0, y: 35 },
+                        {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.75,
+                            stagger: 0.15,
+                            ease: "power2.out",
+                            clearProps: "all",
+                            scrollTrigger: {
+                                trigger: "#metodologia",
+                                start: "top 90%",
+                                once: true,
+                            }
+                        }
+                    );
+                }
+            }
+
+            // Suporte a toque/clique para virar o cartão (ideal para mobile e interação contínua)
+            document.querySelectorAll(".flip-card").forEach(card => {
+                card.addEventListener("click", () => {
+                    card.classList.toggle("is-flipped");
+                });
+            });
+
+            // Garantia de visibilidade e atualização de cálculo do ScrollTrigger
+            setTimeout(() => {
+                if (typeof ScrollTrigger !== 'undefined') {
+                    ScrollTrigger.refresh();
+                }
+                document.querySelectorAll(".flip-card, .step-card").forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top < window.innerHeight * 1.25) {
+                        el.style.opacity = "1";
+                        el.style.transform = "none";
+                    }
+                });
+            }, 350);
+        });
+
+        // =========================================================================
+        // 3. EFEITO 3D TILT E GLARE DE ACRÍLICO NA PLACA NFC
+        // =========================================================================
+        (function initPlateTilt() {
+            const card = document.getElementById('nfcPlateInteractive');
+            if (!card) return;
+
+            // Inicialização do Vanilla-Tilt com Glare quando o script CDN estiver carregado
+            if (typeof VanillaTilt !== 'undefined') {
+                VanillaTilt.init(card, {
+                    max: 18,
+                    speed: 400,
+                    perspective: 1000,
+                    glare: false,
+                    scale: 1.03
+                });
+            }
+
+            // Rastreamento Contínuo do Cursor para Efeito de Brilho Especular (Glare Acrílico)
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const percentX = (x / rect.width) * 100;
+                const percentY = (y / rect.height) * 100;
+
+                // Atualiza a posição do ponto de luz do acrílico
+                card.style.setProperty('--glare-x', `${percentX}%`);
+                card.style.setProperty('--glare-y', `${percentY}%`);
+
+                // Fallback de inclinação caso o VanillaTilt não esteja ativo
+                if (typeof VanillaTilt === 'undefined') {
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = ((y - centerY) / centerY) * -15;
+                    const rotateY = ((x - centerX) / centerX) * 15;
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`;
+                }
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.setProperty('--glare-x', '50%');
+                card.style.setProperty('--glare-y', '50%');
+                if (typeof VanillaTilt === 'undefined') {
+                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+                }
+            });
+        })();
+
+        // =========================================================================
+        // 4. CALCULADORA INTERATIVA DE ROI LOCAL (MULTIPLICADOR DINÂMICO DE NICHO)
+        // =========================================================================
+        (function initRoiCalculator() {
+            const segmentSelect = document.getElementById('segmentSelect');
+            const segmentMultiplierBadge = document.getElementById('segmentMultiplierBadge');
+            const ticketInput = document.getElementById('ticketInput');
+            const clientsInput = document.getElementById('clientsInput');
+            const ticketLabel = document.getElementById('ticketLabel');
+            const currentClientsLabel = document.getElementById('currentClientsLabel');
+            const newClientsBadge = document.getElementById('newClientsBadge');
+            const annualRoiLabel = document.getElementById('annualRoiLabel');
+            const monthlyRoiLabel = document.getElementById('monthlyRoiLabel');
+            const roiMicrocopy = document.getElementById('roiMicrocopy');
+            const roiCtaBtn = document.getElementById('roiCtaBtn');
+
+            if (!segmentSelect || !ticketInput || !clientsInput) return;
+
+            const segmentProfiles = {
+                "0.45": {
+                    name: "Alimentação / Delivery",
+                    multiplier: 0.45,
+                    percent: "45%",
+                    copy: "Esta projeção estima um aumento de 45% no seu fluxo — a média de mercado capturada por negócios de Alimentação que dominam o Google."
+                },
+                "0.40": {
+                    name: "Beleza / Estética (ex: Barbearias)",
+                    multiplier: 0.40,
+                    percent: "40%",
+                    copy: "Esta projeção estima um aumento de 40% no seu fluxo — a média de mercado capturada por negócios de Beleza e Estética que dominam o Google."
+                },
+                "0.25": {
+                    name: "Varejo / Lojas Físicas",
+                    multiplier: 0.25,
+                    percent: "25%",
+                    copy: "Esta projeção estima um aumento de 25% no seu fluxo — a média de mercado capturada por lojas e varejos físicos que dominam o Google."
+                },
+                "0.20": {
+                    name: "Serviços Locais / Manutenção",
+                    multiplier: 0.20,
+                    percent: "20%",
+                    copy: "Esta projeção estima um aumento de 20% no seu fluxo — a média de mercado capturada por prestadores de serviços locais que dominam o Google."
+                }
+            };
+
+            function updateROI() {
+                const selectedVal = segmentSelect.value;
+                const profile = segmentProfiles[selectedVal] || segmentProfiles["0.45"];
+                const multiplier = profile.multiplier;
+
+                const ticket = parseFloat(ticketInput.value);
+                const currentClients = parseInt(clientsInput.value, 10);
+
+                // Novos Clientes = Clientes Atuais * Multiplicador do Nicho Selecionado
+                const newClients = Math.round(currentClients * multiplier);
+                const monthlyGain = Math.round(newClients * ticket);
+                const annualGain = monthlyGain * 12;
+
+                // Atualização de Rótulos
+                ticketLabel.textContent = `R$ ${ticket.toLocaleString('pt-BR')}`;
+                if (currentClientsLabel) currentClientsLabel.textContent = `${currentClients} clientes/mês`;
+                if (newClientsBadge) newClientsBadge.textContent = `+${newClients} novos (+${profile.percent})`;
+                if (segmentMultiplierBadge) segmentMultiplierBadge.textContent = `+${profile.percent} de aumento estimado`;
+
+                if (monthlyRoiLabel) monthlyRoiLabel.textContent = `R$ ${monthlyGain.toLocaleString('pt-BR')}`;
+                if (annualRoiLabel) annualRoiLabel.textContent = `R$ ${annualGain.toLocaleString('pt-BR')}`;
+
+                // Microcopy Dinâmico por Nicho
+                if (roiMicrocopy) {
+                    roiMicrocopy.textContent = profile.copy;
+                }
+
+                // Atualização Dinâmica do Link de WhatsApp
+                if (roiCtaBtn) {
+                    const msg = encodeURIComponent(`Olá! Fiz a simulação na calculadora da MS para o segmento de ${profile.name}: com ${currentClients} clientes atuais e tíquete de R$ ${ticket}, tenho potencial de capturar +${newClients} novos clientes/mês (+R$ ${annualGain.toLocaleString('pt-BR')} anual). Gostaria de posicionar minha empresa no topo do Google.`);
+                    roiCtaBtn.href = `https://wa.me/5547999999999?text=${msg}`;
+                }
+            }
+
+            segmentSelect.addEventListener('change', updateROI);
+            ticketInput.addEventListener('input', updateROI);
+            clientsInput.addEventListener('input', updateROI);
+            updateROI();
+        })();
+
+        // =========================================================================
+        // 5. ACORDEÃO INTERATIVO DO FAQ
+        // =========================================================================
+        document.querySelectorAll('.faq-toggle').forEach(button => {
+            button.addEventListener('click', () => {
+                const item = button.closest('.faq-item');
+                const content = item.querySelector('.faq-content');
+                const icon = item.querySelector('.faq-icon');
+                const isOpen = !content.classList.contains('hidden');
+
+                // Fecha todos os outros
+                document.querySelectorAll('.faq-content').forEach(c => c.classList.add('hidden'));
+                document.querySelectorAll('.faq-icon').forEach(i => i.style.transform = 'rotate(0deg)');
+
+                // Alterna o atual
+                if (!isOpen) {
+                    content.classList.remove('hidden');
+                    icon.style.transform = 'rotate(45deg)';
+                }
+            });
+        });
+
+        // =========================================================================
+        // 6. MENU MOBILE TOGGLE
+        // =========================================================================
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const mobileDrawer = document.getElementById('mobileDrawer');
+        if (mobileBtn && mobileDrawer) {
+            mobileBtn.addEventListener('click', () => {
+                mobileDrawer.classList.toggle('hidden');
+                mobileDrawer.classList.toggle('flex');
+            });
+
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileDrawer.classList.add('hidden');
+                    mobileDrawer.classList.remove('flex');
+                });
+            });
+        }
+
+        // =========================================================================
+        // 7. FUNÇÕES DE CONTROLE DO MODAL DE AVALIAÇÃO DO GOOGLE
+        // =========================================================================
+        function abrirModal() {
+            const modal = document.getElementById('google-modal');
+            if (modal) {
+                modal.classList.replace('opacity-0', 'opacity-100');
+                modal.classList.replace('pointer-events-none', 'pointer-events-auto');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function fecharModal() {
+            const modal = document.getElementById('google-modal');
+            if (modal) {
+                modal.classList.replace('opacity-100', 'opacity-0');
+                modal.classList.replace('pointer-events-auto', 'pointer-events-none');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Exportação explícita para escopo global (window)
+        window.abrirModal = abrirModal;
+        window.fecharModal = fecharModal;
+
+        // Fechamento com tecla ESC
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') fecharModal();
+        });
+    </script>
+
+    <!-- =========================================================================
+       MODAL DE DEMONSTRAÇÃO PRÁTICA: SIMULAÇÃO NATIVA DE AVALIAÇÃO GOOGLE (MOBILE)
+       z-[999] para sobreposição total acima do canvas Three.js e elementos de tela
+       ========================================================================= -->
+    <div id="google-modal" onclick="if (event.target === this) fecharModal()"
+        class="fixed inset-0 z-[999] bg-black/75 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 opacity-0 pointer-events-none transition-opacity duration-300 overflow-y-auto"
+        role="dialog" aria-modal="true" aria-labelledby="googleModalTitle">
+
+        <!-- Container do Smartphone com Controles Externos -->
+        <div onclick="event.stopPropagation()" class="w-full max-w-[400px] flex flex-col items-center my-auto">
+
+            <!-- Barra Superior Flutuante: Badge NFC + Botão Fechar 'X' Discreto Externo -->
+            <div class="flex items-center justify-between w-full mb-2.5 px-1 select-none">
+                <div
+                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-900/90 border border-slate-700/80 text-[11px] font-mono text-emerald-400 font-medium shadow-lg backdrop-blur-md">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                    <span>Aproximação NFC Reconhecida</span>
+                </div>
+
+                <!-- Botão 'X' Externo Discreto -->
+                <button type="button" onclick="fecharModal()" aria-label="Fechar Modal"
+                    class="p-1.5 rounded-full text-slate-400 hover:text-white bg-slate-900/80 hover:bg-slate-800 border border-slate-700/60 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer flex items-center gap-1 text-xs font-mono">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Moldura do Smartphone (Fundo Branco, Sombra Profunda, Cantos Arredondados) -->
+            <div
+                class="bg-white rounded-[28px] sm:rounded-[32px] shadow-2xl shadow-black/70 w-full overflow-hidden border border-gray-200/90 flex flex-col">
+
+                <!-- 1. Cabeçalho Falso de Navegador Mobile (Chrome/Safari Dark Style) -->
+                <div
+                    class="bg-[#202124] text-gray-300 px-3.5 py-2 flex items-center justify-between select-none border-b border-[#303134]">
+                    <!-- Ícone à Esquerda (Cadeado SSL de Segurança) -->
+                    <div class="flex items-center gap-2 text-gray-400">
+                        <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                    </div>
+
+                    <!-- Caixa Central de URL do Navegador -->
+                    <div
+                        class="flex items-center justify-center gap-1.5 bg-[#303134] text-gray-200 px-3.5 py-1 rounded-full text-[11px] sm:text-xs font-sans tracking-tight max-w-[210px] w-full shadow-inner">
+                        <span class="truncate font-normal">search.google.com</span>
+                    </div>
+
+                    <!-- Ícones à Direita (Recarregar & Menu 3 Pontos) -->
+                    <div class="flex items-center gap-2 text-gray-400">
+                        <svg class="w-3.5 h-3.5 hover:text-gray-200 cursor-pointer transition-colors" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                        </svg>
+                        <svg class="w-3.5 h-3.5 hover:text-gray-200 cursor-pointer transition-colors"
+                            fill="currentColor" viewBox="0 0 24 24">
+                            <circle cx="12" cy="5" r="2" />
+                            <circle cx="12" cy="12" r="2" />
+                            <circle cx="12" cy="19" r="2" />
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- 2. Barra Superior do Aplicativo Google Maps (App Bar) -->
+                <div class="px-4 py-3 border-b border-gray-100 flex items-center justify-between bg-white select-none">
+                    <!-- Seta de Voltar (<-) -->
+                    <button type="button" onclick="fecharModal()" aria-label="Voltar"
+                        class="p-1 -ml-1 text-gray-700 hover:text-gray-900 rounded-full hover:bg-gray-100 transition-colors cursor-pointer focus:outline-none">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                    </button>
+
+                    <!-- Título Centralizado 'Seu Negócio Aqui' -->
+                    <h3 id="googleModalTitle"
+                        class="font-medium text-gray-900 text-sm sm:text-base text-center truncate flex-1 px-2 font-sans">
+                        Seu Negócio Aqui
+                    </h3>
+
+                    <!-- Botão Discreto Fechar 'X' na Barra do App -->
+                    <button type="button" onclick="fecharModal()" aria-label="Fechar"
+                        class="p-1 -mr-1 text-gray-400 hover:text-gray-700 rounded-full hover:bg-gray-100 transition-colors cursor-pointer focus:outline-none">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Área com Rolagem Interna da Avaliação (Mobile Viewport) -->
+                <div class="p-4 sm:p-5 space-y-4 max-h-[66vh] overflow-y-auto font-sans text-gray-800">
+
+                    <!-- Identificação do Usuário / Avaliador Google -->
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-9 h-9 rounded-full bg-blue-600 text-white font-semibold text-xs flex items-center justify-center shrink-0 shadow-sm select-none">
+                            V
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="text-xs sm:text-[13px] font-medium text-gray-900 leading-tight">Você
+                                (Cliente)</span>
+                            <span class="text-[11px] text-gray-500 flex items-center gap-1 mt-0.5 select-none">
+                                <svg class="w-3 h-3 text-gray-400 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+                                </svg>
+                                Postando publicamente
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- 3. Avaliação Principal: 5 Estrelas Grandes (#FBBC05) + Texto 'Excepcional' -->
+                    <div class="flex flex-col items-center justify-center pt-1 pb-1 select-none">
+                        <div class="flex items-center justify-center gap-1.5 text-[#FBBC05]">
+                            <svg class="w-8 h-8 sm:w-9 sm:h-9 fill-[#FBBC05] cursor-pointer hover:scale-110 active:scale-95 transition-transform"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                            </svg>
+                            <svg class="w-8 h-8 sm:w-9 sm:h-9 fill-[#FBBC05] cursor-pointer hover:scale-110 active:scale-95 transition-transform"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                            </svg>
+                            <svg class="w-8 h-8 sm:w-9 sm:h-9 fill-[#FBBC05] cursor-pointer hover:scale-110 active:scale-95 transition-transform"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                            </svg>
+                            <svg class="w-8 h-8 sm:w-9 sm:h-9 fill-[#FBBC05] cursor-pointer hover:scale-110 active:scale-95 transition-transform"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                            </svg>
+                            <svg class="w-8 h-8 sm:w-9 sm:h-9 fill-[#FBBC05] cursor-pointer hover:scale-110 active:scale-95 transition-transform"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                            </svg>
+                        </div>
+                        <span class="mt-2 text-sm sm:text-[15px] font-semibold text-gray-700">Excepcional</span>
+                    </div>
+
+                    <!-- 4. Sub-avaliações (Grid / Linhas): Atendimento, Serviço e Ambiente -->
+                    <div class="border-t border-gray-100 pt-3 pb-1 space-y-2.5 select-none">
+                        <!-- Linha 1: Atendimento -->
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs sm:text-[13px] font-medium text-gray-700">Atendimento</span>
+                            <div class="flex items-center gap-1 text-[#FBBC05]">
+                                <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-[#FBBC05]" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                                </svg>
+                                <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-[#FBBC05]" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                                </svg>
+                                <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-[#FBBC05]" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                                </svg>
+                                <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-[#FBBC05]" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                                </svg>
+                                <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-[#FBBC05]" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                                </svg>
+                            </div>
+                        </div>
+
+                        <!-- Linha 2: Serviço -->
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs sm:text-[13px] font-medium text-gray-700">Serviço</span>
+                            <div class="flex items-center gap-1 text-[#FBBC05]">
+                                <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-[#FBBC05]" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                                </svg>
+                                <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-[#FBBC05]" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                                </svg>
+                                <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-[#FBBC05]" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                                </svg>
+                                <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-[#FBBC05]" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                                </svg>
+                                <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-[#FBBC05]" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                                </svg>
+                            </div>
+                        </div>
+
+                        <!-- Linha 3: Ambiente -->
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs sm:text-[13px] font-medium text-gray-700">Ambiente</span>
+                            <div class="flex items-center gap-1 text-[#FBBC05]">
+                                <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-[#FBBC05]" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                                </svg>
+                                <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-[#FBBC05]" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                                </svg>
+                                <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-[#FBBC05]" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                                </svg>
+                                <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-[#FBBC05]" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                                </svg>
+                                <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-[#FBBC05]" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5. Caixa de Texto: Textarea com borda cinza clara e cantos arredondados -->
+                    <div>
+                        <textarea rows="3"
+                            class="w-full border border-gray-300 focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] focus:outline-none rounded-xl p-3 text-xs sm:text-[13px] text-gray-800 placeholder-gray-400 font-sans transition-colors resize-none"
+                            placeholder="Conte como foi sua experiência neste lugar"></textarea>
+                    </div>
+
+                    <!-- 6. Perguntas Extras: Quanto você gastou por pessoa? + Botões estilo 'pill' -->
+                    <div class="pt-1">
+                        <p class="text-xs font-medium text-gray-600 mb-2">Quanto você gastou por pessoa?</p>
+                        <div class="flex flex-wrap gap-1.5 sm:gap-2 select-none">
+                            <button type="button"
+                                onclick="this.classList.toggle('border-[#1A73E8]'); this.classList.toggle('bg-blue-50'); this.classList.toggle('text-[#1A73E8]'); this.classList.toggle('font-medium');"
+                                class="px-3 py-1.5 rounded-full border border-gray-300 bg-white text-gray-600 hover:border-[#1A73E8] hover:text-[#1A73E8] text-xs transition-colors cursor-pointer">
+                                R$ 1–20
+                            </button>
+                            <button type="button"
+                                onclick="this.classList.toggle('border-[#1A73E8]'); this.classList.toggle('bg-blue-50'); this.classList.toggle('text-[#1A73E8]'); this.classList.toggle('font-medium');"
+                                class="px-3 py-1.5 rounded-full border border-gray-300 bg-white text-gray-600 hover:border-[#1A73E8] hover:text-[#1A73E8] text-xs transition-colors cursor-pointer">
+                                R$ 20–40
+                            </button>
+                            <button type="button"
+                                onclick="this.classList.toggle('border-[#1A73E8]'); this.classList.toggle('bg-blue-50'); this.classList.toggle('text-[#1A73E8]'); this.classList.toggle('font-medium');"
+                                class="px-3 py-1.5 rounded-full border border-[#1A73E8] bg-blue-50 text-[#1A73E8] font-medium text-xs transition-colors cursor-pointer">
+                                R$ 40–60
+                            </button>
+                            <button type="button"
+                                onclick="this.classList.toggle('border-[#1A73E8]'); this.classList.toggle('bg-blue-50'); this.classList.toggle('text-[#1A73E8]'); this.classList.toggle('font-medium');"
+                                class="px-3 py-1.5 rounded-full border border-gray-300 bg-white text-gray-600 hover:border-[#1A73E8] hover:text-[#1A73E8] text-xs transition-colors cursor-pointer">
+                                R$ 60–80
+                            </button>
+                            <button type="button"
+                                onclick="this.classList.toggle('border-[#1A73E8]'); this.classList.toggle('bg-blue-50'); this.classList.toggle('text-[#1A73E8]'); this.classList.toggle('font-medium');"
+                                class="px-3 py-1.5 rounded-full border border-gray-300 bg-white text-gray-600 hover:border-[#1A73E8] hover:text-[#1A73E8] text-xs transition-colors cursor-pointer">
+                                R$ 80–100
+                            </button>
+                            <button type="button"
+                                onclick="this.classList.toggle('border-[#1A73E8]'); this.classList.toggle('bg-blue-50'); this.classList.toggle('text-[#1A73E8]'); this.classList.toggle('font-medium');"
+                                class="px-3 py-1.5 rounded-full border border-gray-300 bg-white text-gray-600 hover:border-[#1A73E8] hover:text-[#1A73E8] text-xs transition-colors cursor-pointer">
+                                R$ 100+
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- 7. Botão de Ação: Fixado na parte inferior com botão grande azul (#1A73E8) 'Postar' -->
+                <div class="p-3.5 sm:p-4 border-t border-gray-100 bg-white select-none">
+                    <button type="button" onclick="fecharModal()"
+                        class="w-full bg-[#1A73E8] hover:bg-[#1557b0] active:scale-[0.99] text-white font-medium py-2.5 sm:py-3 px-6 rounded-full text-sm font-sans tracking-wide shadow-sm hover:shadow transition-all cursor-pointer flex items-center justify-center gap-2">
+                        <span>Postar</span>
+                    </button>
+                    <!-- Barra inferior simulando Home Indicator do Smartphone -->
+                    <div class="w-28 h-1 bg-gray-300 rounded-full mx-auto mt-3"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
