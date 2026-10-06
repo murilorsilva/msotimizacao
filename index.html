@@ -9,6 +9,9 @@
         content="Estruturação avançada de presença no Google Maps e dispositivos NFC de balcão para negócios em Jaraguá do Sul e Vale do Itapocu. Conquiste posições no Local Pack com precisão de engenharia.">
     <meta name="theme-color" content="#030712">
 
+    <!-- Favicon Oficial -->
+    <link rel="icon" type="image/png" href="./logo-ms.png">
+
     <!-- Open Graph -->
     <meta property="og:title" content="MS Otimização de Negócios | Inteligência de Dados no Google Maps">
     <meta property="og:description"
@@ -222,7 +225,8 @@
             <!-- LOGO REAL DA MARCA (logo-ms.png) -->
             <a href="#hero" class="flex items-center gap-3 group select-none shrink-0"
                 title="MS Otimização de Negócios">
-                <img src="logo-ms.png" alt="MS Otimização" class="h-8 w-auto">
+                <!-- IMPORTANTE: O GitHub Pages é case-sensitive. Garanta que o nome do arquivo seja exatamente 'logo-ms' (tudo minúsculo). Se sua imagem for SVG ou JPG, altere a extensão .png na tag abaixo. Se a imagem estiver em uma pasta, adicione o caminho, ex: src="./assets/logo-ms.png" -->
+                <img src="./logo-ms.png" alt="MS Otimização" class="h-8 w-auto">
             </a>
 
             <!-- LINKS DE NAVEGAÇÃO DESKTOP: APENAS 4 ITENS ESSENCIAIS (md:flex) -->
@@ -609,7 +613,7 @@
 
                     <!-- A Placa Real Centralizada: placa-sem-fundo.png -->
                     <div class="relative z-0 flex items-center justify-center select-none py-4">
-                        <img src="placa-sem-fundo.png" id="nfcPlateImg"
+                        <img src="./placa-sem-fundo.png" id="nfcPlateImg"
                             class="w-48 sm:w-52 mx-auto z-0 drop-shadow-2xl select-none cursor-pointer hover:scale-105 transition-transform duration-300"
                             alt="Placa NFC MS">
                     </div>
@@ -1493,7 +1497,7 @@
             <div class="absolute inset-x-0 top-0 h-1 google-accent-line"></div>
 
             <div class="mb-6 flex items-center justify-center">
-                <img src="logo-ms.png" alt="MS Otimização" class="h-12 w-auto object-contain">
+                <img src="./logo-ms.png" alt="MS Otimização" class="h-12 w-auto object-contain">
             </div>
 
             <span class="text-xs uppercase tracking-[0.25em] font-mono font-bold text-blue-400 mb-3">
@@ -1545,7 +1549,7 @@
             <!-- Brand e Descrição com logo-ms.png -->
             <div class="flex flex-col items-center md:items-start text-center md:text-left">
                 <a href="#hero" class="flex items-center gap-3 mb-3">
-                    <img src="logo-ms.png" alt="MS Otimização" class="h-8 w-auto object-contain">
+                    <img src="./logo-ms.png" alt="MS Otimização" class="h-8 w-auto object-contain">
                 </a>
                 <p class="text-xs text-slate-400 max-w-sm leading-relaxed font-body">
                     Inteligência de dados locais, estruturação canônica no Google Maps e dispositivos NFC de balcão para
@@ -2157,12 +2161,17 @@
             const modalTitle = document.getElementById('googleModalTitle');
             const btnWhatsapp = document.getElementById('btnWhatsappReport');
 
-            if (nameEl) nameEl.textContent = companyName;
-            if (modalTitle) modalTitle.textContent = companyName;
+            // SEGURANÇA WEB (Proteção Total Anti-XSS):
+            // O dado fornecido pelo usuário é manipulado exclusivamente como texto plano via textContent.
+            // Sob nenhuma hipótese innerHTML é utilizado, impedindo execução de vetores de injeção XSS.
+            const safeName = String(companyName || '').trim();
+
+            if (nameEl) nameEl.textContent = safeName;
+            if (modalTitle) modalTitle.textContent = safeName;
 
             // Link solicitado para WhatsApp com mensagem oficial
             if (btnWhatsapp) {
-                const msg = encodeURIComponent("Olá, fiz a análise da minha empresa no site e quero receber meu MS Score completo.");
+                const msg = encodeURIComponent(`Olá, fiz a análise da empresa ${safeName} no site e quero receber meu MS Score completo.`);
                 btnWhatsapp.href = `https://wa.me/5547991311006?text=${msg}`;
             }
 
